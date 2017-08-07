@@ -1,0 +1,10 @@
+article {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 50px;
+
+  @media (width < 800px) {
+    padding: 25px;
+    line-height: 1.2;
+  }
+}

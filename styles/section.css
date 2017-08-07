@@ -1,0 +1,111 @@
+.section {
+  margin: 50px 0 65px;
+
+  @media (width < 800px) {
+    margin: 25px;
+  }
+}
+
+.section-header {
+  margin: 30px 0;
+  text-align: center;
+}
+
+.section-title {
+  margin: 0;
+  position: relative;
+  font-weight: 300;
+  font-size: 4em;
+}
+
+.section-description {
+  width: 50%;
+  min-width: 500px;
+  margin: 10px auto;
+  padding-right: 25px;
+  box-sizing: border-box;
+  font-family: "Crimson Text";
+  font-size: 24px;
+
+  @media (width < 800px) {
+    min-width: 100%;
+    padding-right: 0;
+  }
+}
+
+.section-title span {
+  --gutter: 25px;
+  margin: 0 -var(--gutter);
+  padding: 0 var(--gutter);
+  background: white;
+}
+
+.section-title hr {
+  width: 100vw;
+  height: 1px;
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  margin-left: -50vw;
+  z-index: -1;
+  background: lightgray;
+  border: 0;
+}
+
+.section-projects {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -25px;
+}
+
+.section-project {
+  flex: 0 0 50%;
+  box-sizing: border-box;
+  padding: 25px;
+
+  @media (width < 800px) {
+    flex: 0 0 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+.section-project-header {
+  display: flex;
+  align-items: center;
+}
+
+.section-project-media {
+  width: 100px;
+  height: 100px;
+  margin-right: 20px;
+  border-radius: 5px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15), 0 1px 1px rgba(0, 0, 0, 0.15);
+}
+
+.section-project-title {
+  font-weight: 300;
+  font-size: 32px;
+  line-height: 1.1;
+}
+
+.section-project-description {
+  margin: 10px 0 10px;
+  font-family: "Crimson Text";
+  font-size: 21px;
+}
+
+.section-project-links span {
+  margin: 0 5px;
+  color: lightgray;
+}
+
+.section-project-links a {
+  color: var(--link-color);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.section-project-links a:hover {
+  text-decoration: underline;
+}

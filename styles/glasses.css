@@ -1,0 +1,27 @@
+.glasses {
+  width: 51vw;
+  height: 34vw;
+  position: absolute;
+  top: 50%;
+  margin-top: -17vw;
+  right: 0;
+  background-image: url("/images/combined.jpg");
+  background-size: cover;
+
+  &[data-column^="-"] {
+    transform: scaleX(-1);
+  }
+
+  @for $row from -2 to 2 {
+    &[data-row="$row"] {
+      &[data-column="0"] {
+        background-position-y: calc(($row + 2) / 14 * 100%);
+      }
+      @for $column from 1 to 2 {
+        &[data-column="$column"], &[data-column="-$column"] {
+          background-position-y: calc(($row + 2 + $column * 5) / 14 * 100%);
+        }
+      }
+    }
+  }
+}
