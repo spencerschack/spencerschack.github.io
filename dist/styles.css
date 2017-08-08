@@ -1,17 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400|Crimson+Text:400,600');
 
-article {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 50px;
+/* Fix for IE */
+wbr:after {
+  content: "\00200B";
 }
 
-@media (max-width: 799px) {
-
-  article {
-    padding: 25px;
-    line-height: 1.2;
-  }
+article {
+  width: calc(100px + 70vw);
+  margin: 0 auto;
+  padding: 0 15px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 body {
@@ -20,6 +19,7 @@ body {
 }
 
 footer {
+  margin: 50px 0 20px;
   position: relative;
 }
 
@@ -29,7 +29,7 @@ footer {
   background: white;
   text-decoration: none;
   color: hsl(210, 75%, 45%);
-  font-size: 21px
+  font-size: 24px
 }
 
 .footer-contact:hover {
@@ -41,7 +41,7 @@ footer {
   height: 1px;
   margin-left: -50vw;
   position: absolute;
-  top: 4px;
+  top: 5px;
   left: 50%;
   z-index: -1;
   background: lightgray;
@@ -57,10 +57,10 @@ footer {
 
 .glasses {
   width: 51vw;
-  height: 34vw;
+  height: calc(51vw * 2 / 3);
   position: absolute;
   top: 50%;
-  margin-top: -17vw;
+  margin-top: calc(-1 * 51vw / 3);
   right: 0;
   background-image: url("/images/combined.jpg");
   background-size: cover
@@ -137,29 +137,33 @@ footer {
 }
 
 .header-info {
-  width: 400px;
+  max-width: 400px;
   position: absolute;
   top: 50%;
   margin-top: -150px;
-  text-align: right;
 }
 
 .header-description {
-  text-align: left;
-  font-family: "Crimson Text";
-  font-size: 24px;
+  margin: 20px 0;
+  font: 24px/30px "Crimson Text", serif;
 }
 
-.header-attribution {
+@media (max-width: 799px){
+  .header-description{
+  font: 21px/26px "Crimson Text", serif;
+  }
+}
+
+.header-title {
   font-size: 32px;
   font-weight: 300;
 }
 
 .header-contact {
   display: inline-block;
-  margin-top: 10px;
   color: hsl(210, 75%, 45%);
-  text-decoration: none
+  text-decoration: none;
+  font-size: 18px
 }
 
 .header-contact:hover {
@@ -167,14 +171,6 @@ footer {
 }
 
 .section {
-  margin: 50px 0 65px;
-}
-
-@media (max-width: 799px) {
-
-  .section {
-    margin: 25px;
-  }
 }
 
 .section-header {
@@ -186,15 +182,26 @@ footer {
   margin: 0;
   position: relative;
   font-weight: 300;
-  font-size: 4em;
+  font-size: 72px;
+}
+
+@media (max-width: 799px) {
+  .section-title {
+    font-size: 52px;
+  }
 }
 
 .section-description {
   width: 100%;
   max-width: 500px;
   margin: 10px auto;
-  font-family: "Crimson Text";
-  font-size: 24px;
+  font: 24px/30px "Crimson Text", serif;
+}
+
+@media (max-width: 799px){
+  .section-description{
+  font: 21px/26px "Crimson Text", serif;
+  }
 }
 
 .section-title span {
@@ -216,7 +223,7 @@ footer {
 }
 
 .section-group {
-  margin: 10px 0;
+  margin: 40px 0 0;
   -webkit-box-flex: 0;
       -ms-flex: 0 0 100%;
           flex: 0 0 100%;
@@ -232,15 +239,45 @@ footer {
   background: white;
 }
 
+@media (max-width: 799px){
+  .section-group-title{
+  padding: 0 15px;
+  }
+}
+
+@media (max-width: 799px) {
+  .section-group-title {
+    font-size: 24px;
+  }
+}
+
 .section-group-rule {
-  width: 60%;
+  width: 75%;
   height: 1px;
   position: absolute;
   top: 18px;
-  margin: 0 20%;
+  margin: 0 calc((100% - 75%) / 2);
   z-index: -1;
   background: lightgray;
   border: 0;
+}
+
+@media (max-width: 799px){
+  .section-group-rule{
+  margin: 0 calc((100% - 100%) / 2);
+  }
+}
+
+@media (max-width: 799px){
+  .section-group-rule{
+  width: 100%;
+  }
+}
+
+@media (max-width: 799px) {
+  .section-group-rule {
+    top: 14px;
+  }
 }
 
 .section-group-description {
@@ -256,26 +293,34 @@ footer {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  margin: 0 -25px;
+  margin: 0 -20px;
 }
 
 .section-project {
+  max-width: 50%;
   -webkit-box-flex: 0;
       -ms-flex: 0 0 50%;
           flex: 0 0 50%;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  padding: 25px;
+  padding: 10px 20px;
 }
 
-@media (max-width: 799px) {
+@media (max-width: 799px){
+  .section-project{
+          flex: 0 0 100%;
+  }
+}
 
-  .section-project {
-    -webkit-box-flex: 0;
-        -ms-flex: 0 0 100%;
-            flex: 0 0 100%;
-    padding-top: 10px;
-    padding-bottom: 10px;
+@media (max-width: 799px){
+  .section-project{
+      -ms-flex: 0 0 100%;
+  }
+}
+
+@media (max-width: 799px){
+  .section-project{
+  max-width: 100%;
   }
 }
 
@@ -289,12 +334,20 @@ footer {
 }
 
 .section-project-media {
-  width: 100px;
-  height: 100px;
+  width: 75px;
+  height: 75px;
   margin-right: 20px;
   border-radius: 5px;
-  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, .15), 0 1px 1px rgba(0, 0, 0, .15);
-          box-shadow: 0 1px 5px rgba(0, 0, 0, .15), 0 1px 1px rgba(0, 0, 0, .15);
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, .15),
+              0 1px 1px rgba(0, 0, 0, .15);
+          box-shadow: 0 1px 5px rgba(0, 0, 0, .15),
+              0 1px 1px rgba(0, 0, 0, .15);
+}
+
+@media (max-width: 799px) {
+  .section-project-media {
+    margin-right: 15px;
+  }
 }
 
 .section-project-title {
@@ -303,10 +356,31 @@ footer {
   line-height: 1.1;
 }
 
+@media (max-width: 799px) {
+  .section-project-title {
+    font-size: 26px;
+  }
+}
+
 .section-project-description {
-  margin: 10px 0 10px;
-  font-family: "Crimson Text";
-  font-size: 21px;
+  margin: 0 0 10px;
+  font: 24px/30px "Crimson Text", serif;
+}
+
+@media (max-width: 799px){
+  .section-project-description{
+  font: 21px/26px "Crimson Text", serif;
+  }
+}
+
+@media (max-width: 799px) {
+  .section-project-description {
+    margin-top: 5px;
+  }
+}
+
+.section-project-links {
+  font-size: 18px;
 }
 
 .section-project-links span {
