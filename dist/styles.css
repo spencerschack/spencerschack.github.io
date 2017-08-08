@@ -20,7 +20,6 @@ body {
 }
 
 footer {
-  padding: 0 50px;
   position: relative;
 }
 
@@ -191,22 +190,11 @@ footer {
 }
 
 .section-description {
-  width: 50%;
-  min-width: 500px;
+  width: 100%;
+  max-width: 500px;
   margin: 10px auto;
-  padding-right: 25px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
   font-family: "Crimson Text";
   font-size: 24px;
-}
-
-@media (max-width: 799px) {
-
-  .section-description {
-    min-width: 100%;
-    padding-right: 0;
-  }
 }
 
 .section-title span {
@@ -225,6 +213,41 @@ footer {
   z-index: -1;
   background: lightgray;
   border: 0;
+}
+
+.section-group {
+  margin: 10px 0;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 100%;
+          flex: 0 0 100%;
+  position: relative;
+  text-align: center;
+}
+
+.section-group-title {
+  margin: 0;
+  padding: 0 25px;
+  font-size: 32px;
+  display: inline-block;
+  background: white;
+}
+
+.section-group-rule {
+  width: 60%;
+  height: 1px;
+  position: absolute;
+  top: 18px;
+  margin: 0 20%;
+  z-index: -1;
+  background: lightgray;
+  border: 0;
+}
+
+.section-group-description {
+  margin: 0;
+  color: gray;
+  font-size: 21px;
+  font-family: "Crimson Text";
 }
 
 .section-projects {
