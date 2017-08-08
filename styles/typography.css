@@ -1,1 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400|Crimson+Text:400,600');
+
+/* Fix for IE */
+wbr:after {
+  content: "\00200B";
+}

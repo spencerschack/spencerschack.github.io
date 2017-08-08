@@ -1,3 +1,10 @@
+@custom-media --one-column (width < 800px);
+
 :root {
   --link-color: hsl(210, 75%, 45%);
+  --text: 24px/30px "Crimson Text", serif;
+
+  @media (--one-column) {
+    --text: 21px/26px "Crimson Text", serif;
+  }
 }

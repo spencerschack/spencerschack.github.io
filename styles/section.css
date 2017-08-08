@@ -1,9 +1,4 @@
 .section {
-  margin: 50px 0 65px;
-
-  @media (width < 800px) {
-    margin: 25px;
-  }
 }
 
 .section-header {
@@ -15,15 +10,18 @@
   margin: 0;
   position: relative;
   font-weight: 300;
-  font-size: 4em;
+  font-size: 72px;
+
+  @media (--one-column) {
+    font-size: 52px;
+  }
 }
 
 .section-description {
   width: 100%;
   max-width: 500px;
   margin: 10px auto;
-  font-family: "Crimson Text";
-  font-size: 24px;
+  font: var(--text);
 }
 
 .section-title span {
@@ -46,7 +44,7 @@
 }
 
 .section-group {
-  margin: 10px 0;
+  margin: 40px 0 0;
   flex: 0 0 100%;
   position: relative;
   text-align: center;
@@ -59,10 +57,15 @@
   font-size: 32px;
   display: inline-block;
   background: white;
+
+  @media (--one-column) {
+    --gutter: 15px;
+    font-size: 24px;
+  }
 }
 
 .section-group-rule {
-  --width: 60%;
+  --width: 75%;
   width: var(--width);
   height: 1px;
   position: absolute;
@@ -71,6 +74,11 @@
   z-index: -1;
   background: lightgray;
   border: 0;
+
+  @media (--one-column) {
+    --width: 100%;
+    top: 14px;
+  }
 }
 
 .section-group-description {
@@ -83,18 +91,18 @@
 .section-projects {
   display: flex;
   flex-wrap: wrap;
-  margin: 0 -25px;
+  margin: 0 -20px;
 }
 
 .section-project {
-  flex: 0 0 50%;
+  --size: 50%;
+  max-width: var(--size);
+  flex: 0 0 var(--size);
   box-sizing: border-box;
-  padding: 25px;
+  padding: 10px 20px;
 
-  @media (width < 800px) {
-    flex: 0 0 100%;
-    padding-top: 10px;
-    padding-bottom: 10px;
+  @media (--one-column) {
+    --size: 100%;
   }
 }
 
@@ -104,23 +112,40 @@
 }
 
 .section-project-media {
-  width: 100px;
-  height: 100px;
+  --size: 75px;
+  width: var(--size);
+  height: var(--size);
   margin-right: 20px;
   border-radius: 5px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15), 0 1px 1px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15),
+              0 1px 1px rgba(0, 0, 0, 0.15);
+
+  @media (--one-column) {
+    margin-right: 15px;
+  }
 }
 
 .section-project-title {
   font-weight: 300;
   font-size: 32px;
   line-height: 1.1;
+
+  @media (--one-column) {
+    font-size: 26px;
+  }
 }
 
 .section-project-description {
-  margin: 10px 0 10px;
-  font-family: "Crimson Text";
-  font-size: 21px;
+  margin: 0 0 10px;
+  font: var(--text);
+
+  @media (--one-column) {
+    margin-top: 5px;
+  }
+}
+
+.section-project-links {
+  font-size: 18px;
 }
 
 .section-project-links span {

@@ -1,9 +1,10 @@
 .glasses {
-  width: 51vw;
-  height: 34vw;
+  --width: 51vw;
+  width: var(--width);
+  height: calc(var(--width) * 2 / 3);
   position: absolute;
   top: 50%;
-  margin-top: -17vw;
+  margin-top: calc(-1 * var(--width) / 3);
   right: 0;
   background-image: url("/images/combined.jpg");
   background-size: cover;

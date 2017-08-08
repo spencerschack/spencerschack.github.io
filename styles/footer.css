@@ -1,4 +1,5 @@
 footer {
+  margin: 50px 0 20px;
   position: relative;
 }
 
@@ -9,7 +10,7 @@ footer {
   background: white;
   text-decoration: none;
   color: var(--link-color);
-  font-size: 21px;
+  font-size: 24px;
 
   &:hover {
     text-decoration: underline;
@@ -21,7 +22,7 @@ footer {
   height: 1px;
   margin-left: -50vw;
   position: absolute;
-  top: 4px;
+  top: 5px;
   left: 50%;
   z-index: -1;
   background: lightgray;
