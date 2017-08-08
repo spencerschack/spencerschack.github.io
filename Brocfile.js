@@ -9,7 +9,9 @@ const BroccoliHandlebars = require('broccoli-handlebars');
 const BroccoliLivereload = require('broccoli-livereload');
 
 const data = new Funnel('.', {
-  files: ['data.yaml']
+  // Watch data.yaml so livereload works when you edit it.
+  // Funnel CNAME through for GitHub pages config.
+  files: ['data.yaml', 'CNAME']
 });
 
 const html = new BroccoliHandlebars(['public'], ['index.hbs'], {
