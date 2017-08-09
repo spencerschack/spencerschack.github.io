@@ -24,13 +24,6 @@ sections:
                 href: https://seedfactory.com
             description:
               Seed Factory's flagship website covering their services and products. Deployed as a static site on Amazon S3 which is built and deployed by the Seed Factory App.
-          - title: Winners Cup
-            media: winnerscup.jpg
-            links:
-              - label: View
-                href: https://winnerscuppigeon.com
-            description:
-              Homepage for one of Seed Factory's brands, Winner's Cup. Deployed and updated by the Seed Factory App just like seedfactory.com.
           - title: Pet's Delight
             media: petsdelight.jpg
             links:
@@ -40,7 +33,7 @@ sections:
                 href: /images/petsdelightbag.png
             description:
               Developed a new small animal food product line. Created packaging art, in-store display, and magazine ad.
-      - title: Habeas Co.
+      - title: Habeas Corp.
         description: 2013 - 2015
         projects:
           - title: Habeas
@@ -54,23 +47,6 @@ sections:
                 href: https://laterally.com
             description:
               Connecting lawyers looking to move with firms looking to hire. I lead application development. Same stack as Habeas but used Postgres directly for full text search
-      - title: Shoob Photography
-        description: 2011 - 2013
-        projects:
-          - title: Shoob<wbr>Photo<wbr>.com
-            media: shoobphoto.jpg
-            links:
-              - label: Source Code
-                href: https://github.com/spencerschack/shoobphoto
-            description:
-              One of my first projects with Rails, back when 3.0 was new. Rebuilt an online store.
-          - title: School Support
-            media: schoolsupport.gif
-            links:
-              - label: Source Code
-                href: https://github.com/spencerschack/schoolsupport
-            description:
-              Company wanted to provide software as an incentive to schools when taking school portraits. I created a responsive app that tracked student test scores.
   - title: Apps
     description: These are all side projects. Usually decide to start something in order to learn a technology.
     groups:
@@ -108,7 +84,8 @@ sections:
   - title: Graphics
     description: graphics
     groups:
-      - projects:
+      - compact: true
+        projects:
         - title: Waves
           media: waves.jpg
           links:
@@ -116,8 +93,6 @@ sections:
               href: http://spencerschack.com/waves
             - label: Source Code
               href: https://github.com/spencerschack/waves
-          description:
-            Ocean wave simulation built from a triangle mesh with Pixi.js. Check out the annotated source code.
         - title: Zenvas
           media: zenvas.jpg
           links:
@@ -125,8 +100,6 @@ sections:
               href: http://spencerschack.com/zenvas
             - label: Source Code
               href: https://github.com/spencerschack/zenvas
-          description:
-            Inspired by drawing on suede pillows.
         - title: Spirograph
           media: spirograph.png
           links:
@@ -134,8 +107,6 @@ sections:
               href: http://spencerschack.com/spirograph
             - label: Source Code
               href: https://github.com/spencerschack/spirograph
-          description:
-            Programmable spirograph built HTML Canvas and Ember.js.
         - title: Coral
           media: coral.png
           links:
@@ -143,15 +114,11 @@ sections:
               href: http://spencerschack.com/coral
             - label: Source Code
               href: https://github.com/spencerschack/coral
-          description:
-            Inspired by a Stack Overflow <a href="https://codegolf.stackexchange.com/questions/22144/images-with-all-colors" target="_blank">post</a> about images that contain every color.
         - title: Geometrip
           media: geometrip.png
           links:
             - label: Source Code
               href: https://github.com/spencerschack/geometrip
-          description:
-            Using SciPy, NumPy, and OpenCV to arrange triangles to look like an input photography.
   - title: Hardware
     description:
       Both of these projects were built during my final semester at Berkeley. They definitely gave me an appreciation of how much harder it is interacting with machines instead of just a web browser.
