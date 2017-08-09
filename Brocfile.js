@@ -3,7 +3,6 @@ const yaml = require('js-yaml');
 const Funnel = require('broccoli-funnel');
 const Concat = require('broccoli-concat');
 const MergeTrees = require('broccoli-merge-trees');
-const JSTranspiler = require('broccoli-babel-transpiler');
 const Postcss = require('broccoli-postcss');
 const BroccoliHandlebars = require('broccoli-handlebars');
 const BroccoliLivereload = require('broccoli-livereload');
@@ -54,36 +53,13 @@ const styles = new Postcss(css, {
   ]
 });
 
-const js = new JSTranspiler('scripts', {
-
-  plugins: [
-    'transform-function-bind',
-    'transform-es2015-modules-amd'
-  ],
-
-  presets: [
-    'es2015'
-  ],
-
-  moduleIds: true
-
-});
-
-const packages = new Funnel('node_modules/requirejs', {
-  files: ['require.js']
-});
-
-const scripts = new Concat(new MergeTrees([js, packages]), {
+const scripts = new Concat('scripts', {
 
   inputFiles: [
     '**/*.js'
   ],
 
-  outputFile: '/scripts.js',
-
-  headerFiles: ['require.js'],
-
-  footer: "require(['main'], function(main) { main.default(); });"
+  outputFile: '/scripts.js'
 
 });
 

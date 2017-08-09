@@ -9,7 +9,9 @@
   <body>
     <article>
       <header class="header">
-        <figure class="glasses" data-row="0" data-column="0"></figure>
+        <div class="header-media">
+          <figure class="glasses" data-row="0" data-column="0"></figure>
+        </div>
         <div class="header-info">
           <div class="header-title">
             Spencer Schack
@@ -45,7 +47,7 @@
                 </p>
               </div>
             {{/if}}
-            <div class="section-projects">
+            <div class="section-projects{{#if compact}} compact{{/if}}">
               {{#each projects}}
                 <div class="section-project">
                   <div class="section-project-header">
@@ -53,9 +55,11 @@
                     <h3 class="section-project-title">{{title}}</h3>
                   </div>
                   <div class="section-project-info">
-                    <div class="section-project-description">
-                      {{description}}
-                    </div>
+                    {{#if description}}
+                      <div class="section-project-description">
+                        {{description}}
+                      </div>
+                    {{/if}}
                     {{#if links}}
                       <nav class="section-project-links">
                         {{#each links}}

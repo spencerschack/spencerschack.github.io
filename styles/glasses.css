@@ -1,12 +1,9 @@
 .glasses {
-  --width: 51vw;
+  --width: 80%;
   width: var(--width);
-  height: calc(var(--width) * 2 / 3);
-  position: absolute;
-  top: 50%;
-  margin-top: calc(-1 * var(--width) / 3);
-  right: 0;
-  background-image: url("/images/combined.jpg");
+  margin: 0 auto;
+  padding-bottom: calc(570 / 1060 * var(--width));
+  background-image: url("/images/glasses.jpg");
   background-size: cover;
 
   &[data-column^="-"] {
