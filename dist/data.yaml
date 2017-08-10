@@ -80,9 +80,9 @@ sections:
               - label: Source Code
                 href: https://github.com/spencerschack/sch
             description:
-              Prototype of a app that tracks both your todos and your time. Built with Ember.js and Rails.
+              Prototype of an app that tracks both your todos and your time. Built with Ember.js and Rails.
   - title: Graphics
-    description: graphics
+    description: Experimental projects I've made, usually with the &lt;canvas&gt; element.
     groups:
       - compact: true
         projects:

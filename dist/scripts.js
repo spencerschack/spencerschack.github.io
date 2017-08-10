@@ -17,9 +17,6 @@ window.addEventListener('DOMContentLoaded', function() {
     });
   }
   var dataset = document.querySelector('.glasses').dataset;
-  function log() {
-    document.getElementById('log').innerHTML = Array.prototype.join.call(arguments, ',');
-  }
   function look(x, y) {
     dataset.column = quantile(x);
     dataset.row = quantile(y);
