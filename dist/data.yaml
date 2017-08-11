@@ -1,0 +1,146 @@
+sections:
+  - title: Work
+    description:
+      I have designed, built, and launched multiple web apps. I am familiar with modern api design, database design and management, as well as modular js development and responsive design.
+    groups:
+      - title: Volkman Seed Factory
+        description: 2015 - Present
+        projects:
+          - title: Seed Factory App
+            media: seedfactoryapp.gif
+            description:
+              Provides easy access to product data through a responsive web interface. Generates marketing assets such as catalogs and brochures. Frontend built with Ember.js. Backend built with Rails and Postgres.
+          - title: Birdseed<wbr>.com
+            media: birdseedcom.jpg
+            links:
+              - label: View
+                href: https://birdseed.com
+            description:
+              An update to Seed Factory's old online store, focusing on responsive design and adding analytics. Also powered by Rails and Postgres which is kept up-to-date automatically by the Seed Factory App through a JSON API.
+          - title: Seed<wbr>Factory<wbr>.com
+            media: seedfactorycom.gif
+            links:
+              - label: View
+                href: https://seedfactory.com
+            description:
+              Seed Factory's flagship website covering their services and products. Deployed as a static site on Amazon S3 which is built and deployed by the Seed Factory App.
+          - title: Pet's Delight
+            media: petsdelight.jpg
+            links:
+              - label: Magazine Ad
+                href: /images/petsdelightad.jpg
+              - label: Package Example
+                href: /images/petsdelightbag.png
+            description:
+              Developed a new small animal food product line. Created packaging art, in-store display, and magazine ad.
+      - title: Habeas Corp.
+        description: 2013 - 2015
+        projects:
+          - title: Habeas
+            media: habeas.gif
+            description:
+              Previous project before pivoting to Laterally. Lawyer search engine with hundreds of thousands of profiles. Developed frontend with Ember.js. Application server ran Rails and Postgres that was mirrored to Elasticsearch for full text search.
+          - title: Laterally
+            media: laterally.jpg
+            links:
+              - label: View
+                href: https://laterally.com
+            description:
+              Connecting lawyers looking to move with firms looking to hire. I lead application development. Same stack as Habeas but used Postgres directly for full text search.
+  - title: Apps
+    description: These are all side projects. Usually decide to start something in order to learn a technology.
+    groups:
+      - projects:
+          - title: Cards Against Humanity
+            media: cardsagainsthumanity.gif
+            links:
+              - label: Demo
+                href: https://cahapp.spencerschack.com
+              - label: Source Code
+                href: https://github.com/spencerschack/cah
+            description:
+              Web app version of the popular card game. Syncing the transitions of the cards with the game state was the most difficult but rewarding part of this project.
+          - title: Graphvas
+            media: graphvas.png
+            links:
+              - label: Demo
+                href: http://spencerschack.com/graphvas
+              - label: Source Code
+                href: https://github.com/spencerschack/graphvas
+            description:
+              Inspired by the interface to Quartz Composer and Facebook Origami, I wanted to create a graph based programming tool. Built with Ember.js.
+          - title: Collaborative Playlist
+            media: collaborative_playlist.png
+            links:
+              - label: Source Code
+                href: https://github.com/spencerschack/collaborative-playlist
+            description:
+              Create a room for you and your friends to listen to music in. Anyone can add songs and rearrange them and everyone listening is kept in sync. Built with Meteor.
+          - title: Sch
+            media: sch.gif
+            links:
+              - label: Source Code
+                href: https://github.com/spencerschack/sch
+            description:
+              Prototype of an app that tracks both your todos and your time. Built with Ember.js and Rails.
+  - title: Graphics
+    description: Experimental projects, usually made with the &lt;canvas&gt; element.
+    groups:
+      - compact: true
+        projects:
+        - title: Waves
+          media: waves.jpg
+          links:
+            - label: Demo
+              href: http://spencerschack.com/waves
+            - label: Source Code
+              href: https://github.com/spencerschack/waves
+        - title: Zenvas
+          media: zenvas.jpg
+          links:
+            - label: Demo
+              href: http://spencerschack.com/zenvas
+            - label: Source Code
+              href: https://github.com/spencerschack/zenvas
+        - title: Spirograph
+          media: spirograph.png
+          links:
+            - label: Demo
+              href: http://spencerschack.com/spirograph
+            - label: Source Code
+              href: https://github.com/spencerschack/spirograph
+        - title: Coral
+          media: coral.png
+          links:
+            - label: Demo
+              href: http://spencerschack.com/coral
+            - label: Source Code
+              href: https://github.com/spencerschack/coral
+        - title: Geometrip
+          media: geometrip.png
+          links:
+            - label: Source Code
+              href: https://github.com/spencerschack/geometrip
+  - title: Hardware
+    description:
+      Both of these projects were built during my final semester at Berkeley. They definitely gave me an appreciation of how much harder it is interacting with machines instead of just a web browser.
+    groups:
+      - projects:
+        - title: Baxter Chess
+          media: baxter_chess.jpg
+          links:
+            - label: Project Description
+              href: http://spencerschack.com/baxter_chess
+            - label: Source Code
+              href: http://github.com/spencerschack/baxter_chess
+          description:
+            Project for Intro to Robotics. Built using ROS on a Baxter research robot. Detects board state and responds with the move generated by stockfish.
+        - title: Autonomous Trashcan
+          media: autonomous_trashcan.jpg
+          links:
+            - label: Video
+              href: https://www.youtube.com/watch?v=4CKqBrzsDaA
+            - label: Source Code
+              href: https://github.com/mkim-hj/autonomous_basketball_catcher
+          description:
+            Project for Embedded Systems. Built with a prebuilt base and AR tags detected by an Xbox Kinect.
