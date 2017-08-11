@@ -55,7 +55,7 @@ sections:
             media: cardsagainsthumanity.gif
             links:
               - label: Demo
-                href: https://cahapp.spencerschack.com
+                href: http://cahapp.spencerschack.com
               - label: Source Code
                 href: https://github.com/spencerschack/cah
             description:
