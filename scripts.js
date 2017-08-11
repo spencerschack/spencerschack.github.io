@@ -28,3 +28,4 @@ window.addEventListener('DOMContentLoaded', function() {
     return Math.max(Math.min(coordinate, 1), 0);
   }
 });
+//# sourceMappingURL=scripts.map
