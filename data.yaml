@@ -46,18 +46,20 @@ sections:
               - label: View
                 href: https://laterally.com
             description:
-              Connecting lawyers looking to move with firms looking to hire. I lead application development. Same stack as Habeas but used Postgres directly for full text search
+              Connecting lawyers looking to move with firms looking to hire. I lead application development. Same stack as Habeas but used Postgres directly for full text search.
   - title: Apps
     description: These are all side projects. Usually decide to start something in order to learn a technology.
     groups:
       - projects:
-          - title: Collaborative Playlist
-            media: collaborative_playlist.png
+          - title: Cards Against Humanity
+            media: cardsagainsthumanity.gif
             links:
-              - label: Source Code
-                href: https://github.com/spencerschack/collaborative-playlist
+              - label: Demo
+                href: https://cahapp.spencerschack.com
+                label: Source Code
+                href: https://github.com/spencerschack/cah
             description:
-              Create a room for you and your friends to listen to music in. Anyone can add songs and rearrange them and everyone listening is kept in sync. Built with Meteor.
+              Web app version of the popular card game. Syncing the transitions of the cards with the game state was the most difficult but rewarding part of this project.
           - title: Graphvas
             media: graphvas.png
             links:
@@ -67,13 +69,13 @@ sections:
                 href: https://github.com/spencerschack/graphvas
             description:
               Inspired by the interface to Quartz Composer and Facebook Origami, I wanted to create a graph based programming tool. Built with Ember.js.
-          - title: Cards Against Humanity
-            media: cardsagainsthumanity.gif
+          - title: Collaborative Playlist
+            media: collaborative_playlist.png
             links:
               - label: Source Code
-                href: https://github.com/spencerschack/cah
+                href: https://github.com/spencerschack/collaborative-playlist
             description:
-              Web app version of the popular card game. Syncing the transitions of the cards with the game state was the most difficult but rewarding part of this project.
+              Create a room for you and your friends to listen to music in. Anyone can add songs and rearrange them and everyone listening is kept in sync. Built with Meteor.
           - title: Sch
             media: sch.gif
             links:
@@ -82,7 +84,7 @@ sections:
             description:
               Prototype of an app that tracks both your todos and your time. Built with Ember.js and Rails.
   - title: Graphics
-    description: Experimental projects I've made, usually with the &lt;canvas&gt; element.
+    description: Experimental projects, usually made with the &lt;canvas&gt; element.
     groups:
       - compact: true
         projects:
