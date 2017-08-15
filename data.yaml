@@ -1,5 +1,6 @@
 sections:
   - title: Work
+    id: work
     description:
       I have designed, built, and launched multiple web apps. I am familiar with modern api design, database design and management, as well as modular js development and responsive design.
     groups:
@@ -8,6 +9,9 @@ sections:
         projects:
           - title: Seed Factory App
             media: seedfactoryapp.gif
+            links:
+              - label: Screenshot
+                href: /images/seedfactoryapp.png
             description:
               Provides easy access to product data through a responsive web interface. Generates marketing assets such as catalogs and brochures. Frontend built with Ember.js. Backend built with Rails and Postgres.
           - title: Birdseed<wbr>.com
@@ -36,18 +40,19 @@ sections:
       - title: Habeas Corp.
         description: 2013 - 2015
         projects:
-          - title: Habeas
-            media: habeas.gif
-            description:
-              Previous project before pivoting to Laterally. Lawyer search engine with hundreds of thousands of profiles. Developed frontend with Ember.js. Application server ran Rails and Postgres that was mirrored to Elasticsearch for full text search.
           - title: Laterally
             media: laterally.jpg
             links:
               - label: View
                 href: https://laterally.com
             description:
-              Connecting lawyers looking to move with firms looking to hire. I lead application development. Same stack as Habeas but used Postgres directly for full text search.
+              Connecting lawyers looking to move with firms that are hiring. I joined as their first employee and lead development of the web app. Built with Ember.js and Rails with Postgres.
+          - title: Habeas
+            media: habeas.gif
+            description:
+              Previous project before pivoting to Laterally. Lawyer search engine with hundreds of thousands of profiles. Same stack as Laterally but used Elasticsearch for full text search instead.
   - title: Apps
+    id: apps
     description: These are all side projects. Usually decide to start something in order to learn a technology.
     groups:
       - projects:
@@ -84,6 +89,7 @@ sections:
             description:
               Prototype of an app that tracks both your todos and your time. Built with Ember.js and Rails.
   - title: Graphics
+    id: graphics
     description: Experimental projects, usually made with the &lt;canvas&gt; element.
     groups:
       - compact: true
@@ -119,9 +125,10 @@ sections:
         - title: Geometrip
           media: geometrip.png
           links:
-            - label: Source Code
+            - label: Demo &amp; Source Code
               href: https://github.com/spencerschack/geometrip
   - title: Hardware
+    id: hardware
     description:
       Both of these projects were built during my final semester at Berkeley. They definitely gave me an appreciation of how much harder it is interacting with machines instead of just a web browser.
     groups:
@@ -129,8 +136,10 @@ sections:
         - title: Baxter Chess
           media: baxter_chess.jpg
           links:
-            - label: Project Description
+            - label: Description
               href: http://spencerschack.com/baxter_chess
+            - label: Video
+              href: https://www.youtube.com/watch?v=xZvGHIRCyQE
             - label: Source Code
               href: http://github.com/spencerschack/baxter_chess
           description:
@@ -138,6 +147,8 @@ sections:
         - title: Autonomous Trashcan
           media: autonomous_trashcan.jpg
           links:
+            - label: Paper
+              href: ../images/autonomous_trashcan.pdf
             - label: Video
               href: https://www.youtube.com/watch?v=4CKqBrzsDaA
             - label: Source Code

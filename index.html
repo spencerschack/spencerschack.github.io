@@ -19,17 +19,26 @@
           <p class="header-description">
             Software engineer and graphic designer specializing in web development. Graduated Berkeley majoring in EECS and now living in San Francisco.
           </p>
-          <a href="mailto:spencer@schacks.us" class="header-contact">
-            Contact
-          </a>
+          <nav class="links">
+            <a href="mailto:spencer@schacks.us">
+              Email</a>
+            <span>&bull;</span>
+            <a href="http://spencerschack.com/resume/resume.pdf" target="_blank">
+              Resume</a>
+            <span>&bull;</span>
+            <a href="https://github.com/spencerschack" target="_blank">
+              GitHub</a>
+          </nav>
         </div>
       </header>
         <section class="section">
           <div class="section-header">
-            <h1 class="section-title">
-              <span>Work</span>
-              <hr>
-            </h1>
+            <a href="#work" class="section-anchor">
+              <h1 id="work" class="section-title">
+                <span>Work</span>
+                <hr>
+              </h1>
+            </a>
             <p class="section-description">
               I have designed, built, and launched multiple web apps. I am familiar with modern api design, database design and management, as well as modular js development and responsive design.
             </p>
@@ -53,6 +62,10 @@
                       <div class="section-project-description">
                         Provides easy access to product data through a responsive web interface. Generates marketing assets such as catalogs and brochures. Frontend built with Ember.js. Backend built with Rails and Postgres.
                       </div>
+                      <nav class="links">
+                          <a href="/images/seedfactoryapp.png" target="_blank">
+                            Screenshot</a>
+                      </nav>
                   </div>
                 </div>
                 <div class="section-project">
@@ -64,7 +77,7 @@
                       <div class="section-project-description">
                         An update to Seed Factory's old online store, focusing on responsive design and adding analytics. Also powered by Rails and Postgres which is kept up-to-date automatically by the Seed Factory App through a JSON API.
                       </div>
-                      <nav class="section-project-links">
+                      <nav class="links">
                           <a href="https://birdseed.com" target="_blank">
                             View</a>
                       </nav>
@@ -79,7 +92,7 @@
                       <div class="section-project-description">
                         Seed Factory's flagship website covering their services and products. Deployed as a static site on Amazon S3 which is built and deployed by the Seed Factory App.
                       </div>
-                      <nav class="section-project-links">
+                      <nav class="links">
                           <a href="https://seedfactory.com" target="_blank">
                             View</a>
                       </nav>
@@ -94,7 +107,7 @@
                       <div class="section-project-description">
                         Developed a new small animal food product line. Created packaging art, in-store display, and magazine ad.
                       </div>
-                      <nav class="section-project-links">
+                      <nav class="links">
                           <a href="/images/petsdelightad.jpg" target="_blank">
                             Magazine Ad</a>
                             <span>&bull;</span>
@@ -116,38 +129,40 @@
             <div class="section-projects">
                 <div class="section-project">
                   <div class="section-project-header">
-                    <img src="/images/habeas.gif" class="section-project-media" alt="">
-                    <h3 class="section-project-title">Habeas</h3>
-                  </div>
-                  <div class="section-project-info">
-                      <div class="section-project-description">
-                        Previous project before pivoting to Laterally. Lawyer search engine with hundreds of thousands of profiles. Developed frontend with Ember.js. Application server ran Rails and Postgres that was mirrored to Elasticsearch for full text search.
-                      </div>
-                  </div>
-                </div>
-                <div class="section-project">
-                  <div class="section-project-header">
                     <img src="/images/laterally.jpg" class="section-project-media" alt="">
                     <h3 class="section-project-title">Laterally</h3>
                   </div>
                   <div class="section-project-info">
                       <div class="section-project-description">
-                        Connecting lawyers looking to move with firms looking to hire. I lead application development. Same stack as Habeas but used Postgres directly for full text search.
+                        Connecting lawyers looking to move with firms that are hiring. I joined as their first employee and lead development of the web app. Built with Ember.js and Rails with Postgres.
                       </div>
-                      <nav class="section-project-links">
+                      <nav class="links">
                           <a href="https://laterally.com" target="_blank">
                             View</a>
                       </nav>
+                  </div>
+                </div>
+                <div class="section-project">
+                  <div class="section-project-header">
+                    <img src="/images/habeas.gif" class="section-project-media" alt="">
+                    <h3 class="section-project-title">Habeas</h3>
+                  </div>
+                  <div class="section-project-info">
+                      <div class="section-project-description">
+                        Previous project before pivoting to Laterally. Lawyer search engine with hundreds of thousands of profiles. Same stack as Laterally but used Elasticsearch for full text search instead.
+                      </div>
                   </div>
                 </div>
             </div>
         </section>
         <section class="section">
           <div class="section-header">
-            <h1 class="section-title">
-              <span>Apps</span>
-              <hr>
-            </h1>
+            <a href="#apps" class="section-anchor">
+              <h1 id="apps" class="section-title">
+                <span>Apps</span>
+                <hr>
+              </h1>
+            </a>
             <p class="section-description">
               These are all side projects. Usually decide to start something in order to learn a technology.
             </p>
@@ -162,7 +177,7 @@
                       <div class="section-project-description">
                         Web app version of the popular card game. Syncing the transitions of the cards with the game state was the most difficult but rewarding part of this project.
                       </div>
-                      <nav class="section-project-links">
+                      <nav class="links">
                           <a href="http://cahapp.spencerschack.com" target="_blank">
                             Demo</a>
                             <span>&bull;</span>
@@ -180,7 +195,7 @@
                       <div class="section-project-description">
                         Inspired by the interface to Quartz Composer and Facebook Origami, I wanted to create a graph based programming tool. Built with Ember.js.
                       </div>
-                      <nav class="section-project-links">
+                      <nav class="links">
                           <a href="http://spencerschack.com/graphvas" target="_blank">
                             Demo</a>
                             <span>&bull;</span>
@@ -198,7 +213,7 @@
                       <div class="section-project-description">
                         Create a room for you and your friends to listen to music in. Anyone can add songs and rearrange them and everyone listening is kept in sync. Built with Meteor.
                       </div>
-                      <nav class="section-project-links">
+                      <nav class="links">
                           <a href="https://github.com/spencerschack/collaborative-playlist" target="_blank">
                             Source Code</a>
                       </nav>
@@ -213,7 +228,7 @@
                       <div class="section-project-description">
                         Prototype of an app that tracks both your todos and your time. Built with Ember.js and Rails.
                       </div>
-                      <nav class="section-project-links">
+                      <nav class="links">
                           <a href="https://github.com/spencerschack/sch" target="_blank">
                             Source Code</a>
                       </nav>
@@ -223,10 +238,12 @@
         </section>
         <section class="section">
           <div class="section-header">
-            <h1 class="section-title">
-              <span>Graphics</span>
-              <hr>
-            </h1>
+            <a href="#graphics" class="section-anchor">
+              <h1 id="graphics" class="section-title">
+                <span>Graphics</span>
+                <hr>
+              </h1>
+            </a>
             <p class="section-description">
               Experimental projects, usually made with the &lt;canvas&gt; element.
             </p>
@@ -238,7 +255,7 @@
                     <h3 class="section-project-title">Waves</h3>
                   </div>
                   <div class="section-project-info">
-                      <nav class="section-project-links">
+                      <nav class="links">
                           <a href="http://spencerschack.com/waves" target="_blank">
                             Demo</a>
                             <span>&bull;</span>
@@ -253,7 +270,7 @@
                     <h3 class="section-project-title">Zenvas</h3>
                   </div>
                   <div class="section-project-info">
-                      <nav class="section-project-links">
+                      <nav class="links">
                           <a href="http://spencerschack.com/zenvas" target="_blank">
                             Demo</a>
                             <span>&bull;</span>
@@ -268,7 +285,7 @@
                     <h3 class="section-project-title">Spirograph</h3>
                   </div>
                   <div class="section-project-info">
-                      <nav class="section-project-links">
+                      <nav class="links">
                           <a href="http://spencerschack.com/spirograph" target="_blank">
                             Demo</a>
                             <span>&bull;</span>
@@ -283,7 +300,7 @@
                     <h3 class="section-project-title">Coral</h3>
                   </div>
                   <div class="section-project-info">
-                      <nav class="section-project-links">
+                      <nav class="links">
                           <a href="http://spencerschack.com/coral" target="_blank">
                             Demo</a>
                             <span>&bull;</span>
@@ -298,9 +315,9 @@
                     <h3 class="section-project-title">Geometrip</h3>
                   </div>
                   <div class="section-project-info">
-                      <nav class="section-project-links">
+                      <nav class="links">
                           <a href="https://github.com/spencerschack/geometrip" target="_blank">
-                            Source Code</a>
+                            Demo &amp; Source Code</a>
                       </nav>
                   </div>
                 </div>
@@ -308,10 +325,12 @@
         </section>
         <section class="section">
           <div class="section-header">
-            <h1 class="section-title">
-              <span>Hardware</span>
-              <hr>
-            </h1>
+            <a href="#hardware" class="section-anchor">
+              <h1 id="hardware" class="section-title">
+                <span>Hardware</span>
+                <hr>
+              </h1>
+            </a>
             <p class="section-description">
               Both of these projects were built during my final semester at Berkeley. They definitely gave me an appreciation of how much harder it is interacting with machines instead of just a web browser.
             </p>
@@ -326,9 +345,12 @@
                       <div class="section-project-description">
                         Project for Intro to Robotics. Built using ROS on a Baxter research robot. Detects board state and responds with the move generated by stockfish.
                       </div>
-                      <nav class="section-project-links">
+                      <nav class="links">
                           <a href="http://spencerschack.com/baxter_chess" target="_blank">
-                            Project Description</a>
+                            Description</a>
+                            <span>&bull;</span>
+                          <a href="https://www.youtube.com/watch?v=xZvGHIRCyQE" target="_blank">
+                            Video</a>
                             <span>&bull;</span>
                           <a href="http://github.com/spencerschack/baxter_chess" target="_blank">
                             Source Code</a>
@@ -344,7 +366,10 @@
                       <div class="section-project-description">
                         Project for Embedded Systems. Built with a prebuilt base and AR tags detected by an Xbox Kinect.
                       </div>
-                      <nav class="section-project-links">
+                      <nav class="links">
+                          <a href="../images/autonomous_trashcan.pdf" target="_blank">
+                            Paper</a>
+                            <span>&bull;</span>
                           <a href="https://www.youtube.com/watch?v=4CKqBrzsDaA" target="_blank">
                             Video</a>
                             <span>&bull;</span>
@@ -357,7 +382,7 @@
         </section>
       <footer>
         <a href="mailto:spencer@schacks.us" class="footer-contact">
-          Contact
+          Email
         </a>
         <hr class="footer-rule">
         <div class="footer-copyright">

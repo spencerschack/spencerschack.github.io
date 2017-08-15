@@ -200,14 +200,22 @@ footer {
   font-weight: 300;
 }
 
-.header-contact {
-  display: inline-block;
-  color: hsl(210, 75%, 45%);
-  text-decoration: none;
-  font-size: 18px
+.links {
+  font-size: 18px;
 }
 
-.header-contact:hover {
+.links span {
+  margin: 0 5px;
+  color: lightgray;
+}
+
+.links a {
+  color: hsl(210, 75%, 45%);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.links a:hover {
   text-decoration: underline;
 }
 
@@ -231,6 +239,11 @@ footer {
   .section-title {
     font-size: 52px;
   }
+}
+
+.section-anchor {
+  text-decoration: none;
+  color: inherit;
 }
 
 .section-description {
@@ -480,23 +493,4 @@ footer {
   .section-project-description {
     margin-top: 5px;
   }
-}
-
-.section-project-links {
-  font-size: 18px;
-}
-
-.section-project-links span {
-  margin: 0 5px;
-  color: lightgray;
-}
-
-.section-project-links a {
-  color: hsl(210, 75%, 45%);
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.section-project-links a:hover {
-  text-decoration: underline;
 }
