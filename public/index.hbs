@@ -19,18 +19,27 @@
           <p class="header-description">
             Software engineer and graphic designer specializing in web development. Graduated Berkeley majoring in EECS and now living in San Francisco.
           </p>
-          <a href="mailto:spencer@schacks.us" class="header-contact">
-            Contact
-          </a>
+          <nav class="links">
+            <a href="mailto:spencer@schacks.us">
+              Email</a>
+            <span>&bull;</span>
+            <a href="http://spencerschack.com/resume/resume.pdf" target="_blank">
+              Resume</a>
+            <span>&bull;</span>
+            <a href="https://github.com/spencerschack" target="_blank">
+              GitHub</a>
+          </nav>
         </div>
       </header>
       {{#each sections}}
         <section class="section">
           <div class="section-header">
-            <h1 class="section-title">
-              <span>{{title}}</span>
-              <hr>
-            </h1>
+            <a href="#{{id}}" class="section-anchor">
+              <h1 id="{{id}}" class="section-title">
+                <span>{{title}}</span>
+                <hr>
+              </h1>
+            </a>
             <p class="section-description">
               {{description}}
             </p>
@@ -61,7 +70,7 @@
                       </div>
                     {{/if}}
                     {{#if links}}
-                      <nav class="section-project-links">
+                      <nav class="links">
                         {{#each links}}
                           {{#unless @first}}
                             <span>&bull;</span>
@@ -80,7 +89,7 @@
       {{/each}}
       <footer>
         <a href="mailto:spencer@schacks.us" class="footer-contact">
-          Contact
+          Email
         </a>
         <hr class="footer-rule">
         <div class="footer-copyright">

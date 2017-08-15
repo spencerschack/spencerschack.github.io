@@ -1,0 +1,18 @@
+.links {
+  font-size: 18px;
+}
+
+.links span {
+  margin: 0 5px;
+  color: lightgray;
+}
+
+.links a {
+  color: var(--link-color);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}

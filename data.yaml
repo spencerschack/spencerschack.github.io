@@ -1,5 +1,6 @@
 sections:
   - title: Work
+    id: work
     description:
       I have designed, built, and launched multiple web apps. I am familiar with modern api design, database design and management, as well as modular js development and responsive design.
     groups:
@@ -51,6 +52,7 @@ sections:
             description:
               Previous project before pivoting to Laterally. Lawyer search engine with hundreds of thousands of profiles. Same stack as Laterally but used Elasticsearch for full text search instead.
   - title: Apps
+    id: apps
     description: These are all side projects. Usually decide to start something in order to learn a technology.
     groups:
       - projects:
@@ -87,6 +89,7 @@ sections:
             description:
               Prototype of an app that tracks both your todos and your time. Built with Ember.js and Rails.
   - title: Graphics
+    id: graphics
     description: Experimental projects, usually made with the &lt;canvas&gt; element.
     groups:
       - compact: true
@@ -125,6 +128,7 @@ sections:
             - label: Demo &amp; Source Code
               href: https://github.com/spencerschack/geometrip
   - title: Hardware
+    id: hardware
     description:
       Both of these projects were built during my final semester at Berkeley. They definitely gave me an appreciation of how much harder it is interacting with machines instead of just a web browser.
     groups:

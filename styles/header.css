@@ -44,14 +44,3 @@
   font-size: 32px;
   font-weight: 300;
 }
-
-.header-contact {
-  display: inline-block;
-  color: var(--link-color);
-  text-decoration: none;
-  font-size: 18px;
-
-  &:hover {
-    text-decoration: underline;
-  }
-}
