@@ -1,0 +1,38 @@
+.container {
+  width: 40em;
+  margin: 0 auto 10em auto;
+  font-size: 18px;
+  line-height: 26px;
+  letter-spacing: 0.3px;
+  text-align: justify;
+}
+
+.container p {
+  margin: 30px 0;
+}
+
+.container li {
+  margin: 30px 0;
+  list-style: none;
+}
+
+.container li::before {
+  margin-left: -10px;
+  padding-right: 10px;
+  content: "—";
+  font-weight: 700;
+}
+
+.code {
+  margin: 40px 0;
+}
+
+.aside {
+  width: 15em;
+  margin: 15px -8em 15px 20px;
+  padding: 0 10px;
+  float: right;
+  border-left: 5px solid rgb(245, 245, 250);
+  font-size: 16px;
+  line-height: 20px;
+}

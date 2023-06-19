@@ -1,0 +1,262 @@
+# Query
+
+> Developing a tool for composing and executing SQL queries
+
+import styles from "./styles.module.css";
+
+```js className={styles.code}
+connection.execute({
+  sqlText: "SELECT * FROM ads WHERE id = $",
+  binds: [id],
+});
+```
+
+At a previous job, I was writing a lot SQL to do data analysis to
+inform our company's programmatic ad buying. We used Snowflake and a lot of the
+code looked like this:
+
+It was cumbersome to interpolate variables. I wanted the SQL to really feel like
+it was part of the source code instead of just a string parameter. Like in JSX
+where creating html elements is baked into the language for better ergonomics.
+
+My first step was creating something like [sql-template-tag](https://github.com/blakeembrey/sql-template-tag):
+
+```js className={styles.code}
+function query(parts, ...binds) {
+  return { sqlText: parts.join("$"), binds };
+}
+
+connection.execute(query`SELECT * FROM ads WHERE id = ${id}`);
+```
+
+<div className={styles.codeCommentContainer}>
+  I thought I could make this a little easier by incorporating the call to
+  `execute` in the helper:
+</div>
+
+```js
+function query(parts, ...binds) {
+  connection.execute({ sqlText: parts.join("$"), binds });
+}
+
+const results = await query`SELECT * FROM ads WHERE id = ${id}`;
+```
+
+The next thing I wanted to implement was query composition. So far, the helper
+supported interpolating variables, but not other queries themselves:
+
+```js
+const lastDay = query`created_at > current_timestamp() - interval '1' day`;
+const results = await query`SELECT * FROM ads WHERE ${lastDay}`;
+```
+
+There were two issues:
+
+1. The nested query would be executed immediately when defined.
+1. The helper expects only variables, not nested queries.
+
+Immediate execution of the query is easy to solve using "lazy" promises, which
+defer execution until the promise is actually awaited:
+
+```js highlight="2-3,6"
+function query(parts, ...binds) {
+  return {
+    then(resolve, reject) {
+      return connection
+        .execute({ sqlText: parts.join("$"), binds })
+        .then(resolve, reject);
+    }
+```
+
+Nested queries are more difficult to support. The helper needs to determine
+if an interpolation is a bind variable or a nested query, in which case the
+inner query needs to be unnested.
+
+First we need a mechanism to determine whether the interpolation is a nested
+query. We can achieve this with a javascript idiom where we use a `Symbol` to
+allow conversion of a value into another type:
+
+```js highlight="1,5-7"
+const toQuery = new Symbol();
+
+function query(parts, ...variables) {
+  return {
+    [toQuery]() {
+      return [parts, binds];
+    },
+    then(resolve, reject) {
+```
+
+Next, we need to unnest nested queries:
+
+```js highlight="3-19,22"
+const toQuery = new Symbol();
+
+function compile(rawParts, rawVariables) {
+  const compiledParts = [rawParts.shift()];
+  const compiledVariables = [];
+  rawVariables.forEach((variable, index) => {
+    if (variable && typeof variable && toQuery in variable) {
+      const [nestedParts, nestedVariables] = variable[toQuery]();
+      compiledParts[compiledParts.length - 1] += nestedParts[0];
+      compiledParts.push(...nestedParts.slice(1));
+      compiledParts[compiledParts.length - 1] += rawParts[index];
+      compiledVariables.push(...nestedVariables);
+    } else {
+      compiledParts.push(rawParts[index]);
+      compiledVariables.push(variable);
+    }
+  });
+  return [compiledParts, compiledVariables];
+}
+
+function query(rawParts, ...rawVariables) {
+  const [compiledParts, compiledVariables] = compile(parts, binds);
+  return {
+```
+
+## Features
+
+### Parameterization
+
+```js
+const [user] = await $`
+  SELECT * FROM users WHERE id = ${params.id}
+`;
+// db.execute("SELECT * FROM users WHERE id = $1", [1]);
+```
+
+### Composition
+
+```js
+const yesterday = $`current_timestamp() - interval '1' day`;
+const newUsers = $`SELECT * FROM users WHERE created_at < ${yesterday}`;
+const newUserPosts = $`
+  WITH users AS (${newUsers})
+  SELECT posts.* FROM posts
+  INNER JOIN users ON posts.user_id = users.id
+`;
+```
+
+### Scalar Selection
+
+```js
+const [{ id }] = await $`SELECT id FROM users ORDER BY created_at DESC LIMIT 1`;
+```
+
+### Async Iteration
+
+```js
+const result = $`SELECT * FROM users`;
+for await (const user of users) {
+}
+```
+
+## Setup
+
+### Overview
+
+```js
+import makeQuery from "query";
+
+const $ = makeQuery((queryParts, variables) => {
+  return db.execute(queryParts.join("$"), variables); // Implements AsyncIterator
+});
+```
+
+### Postgres
+
+```js
+import makeQuery from "query";
+import { Client } from "pg";
+import Cursor from "pg-cursor";
+
+const client = new Client();
+await client.connect();
+
+const $ = makeQuery(async function* (queryParts, variables) {
+  const query = queryParts.reduce((query, part, index) => {
+    return query + "$" + String(index + 1) + part;
+  }, "");
+  const cursor = await client.query(new Cursor(query, variables));
+  while (true) {
+    const result = await cursor.read(1000);
+    if (result.length === 0) break;
+    yield* result;
+  }
+});
+```
+
+### Snowflake
+
+```js
+import makeQuery from "query";
+import { createConnection } from "snowflake-sdk";
+
+const connection = createConnection({...});
+
+const $ = makeQuery((queryParts, variables) => {
+  const statement = connection.execute({
+    sqlText: queryParts.join("$"),
+    binds: variables,
+  });
+  return statement.streamRows();
+})
+```
+
+## Source
+
+```ts
+type DefaultVariables = string | number | boolean | Date | null;
+type DefaultRow = Record<string, DefaultVariables>;
+type Execute<V> = <R,>(queryParts: string[], ...variables: V[]) => Statement<R>
+type Statement<R> = AsyncIterator<R> & Promise<R>;
+type TemplateTag<V> = (queryParts: string[], ...variables: V[])
+
+const toQuery: unique symbol = Symbol();
+
+function compile<V>(rawParts: string[], rawVariables: V[]) {
+  const compiledParts = [rawParts.shift()];
+  const compiledVariables = [];
+  rawVariables.forEach((variable, index) => {
+    if (variable && typeof variable && toQuery in variable) {
+      const [nestedParts, nestedVariables] = variable[toQuery]()
+      compiledParts[compiledParts.length - 1] += nestedParts[0];
+      compiledParts.push(...nestedParts.slice(1));
+      compiledParts[compiledParts.length - 1] += rawParts[index];
+      compiledVariables.push(...nestedVariables);
+    } else {
+      compiledParts.push(rawParts[index]);
+      compiledVariables.push(variable);
+    }
+  })
+  return [compiledParts, compiledVariables];
+}
+
+async function collectAsyncIterator<T>(asyncIterator: AsyncIterator<T>): Promise<T[]> {
+  const result = []
+  for await (const row of asyncIterator) {
+    result.push(row);
+  }
+  return result;
+}
+
+export default function makeQuery<V = DefaultVariables>(
+  execute: Execute<V>
+): TemplateTag<V> {
+  return (rawParts, ...rawVariables) => {
+    const [compiledParts, compiledVariables] = compile(rawParts, rawVariables);
+    return {
+      [toQuery]() {
+        return [compiledParts, compiledVariables];
+      },
+      then(resolve, reject) {
+        return collectAsyncIterator(this).then(resolve, reject);
+      },
+      [Symbol.asyncIterator]() {
+        return execute(compiledParts, compiledVariables);
+      }
+    }
+  }
+}
+```

@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    filter: invert() hue-rotate(180deg);
+  }
+}
+
+.cm-focused {
+  outline: none !important;
+}
