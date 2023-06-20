@@ -6,6 +6,7 @@ import { createTheme } from "@uiw/codemirror-themes";
 import { tags as t } from "@lezer/highlight";
 import { useEffect, useMemo, useRef, useState } from "react";
 import initSqlite, { Database, QueryExecResult } from "sql.js/dist/sql-asm";
+import styles from "./styles.module.css";
 
 const theme = createTheme({
   theme: "light",
@@ -42,8 +43,8 @@ async function run(database: Promise<Database>, code: string) {
   async function query(parts: string[], ...binds: string[]) {
     results.push(...(await database).exec(parts.join("?"), binds));
   }
-  const func = new Function("query", code);
-  func(query);
+  const func = new Function("query", `return (async () => {${code}})()`);
+  await func(query);
   return results;
 }
 
@@ -58,15 +59,17 @@ function useSqlite(database: Uint8Array) {
   return promise.current;
 }
 
-interface Props {
+const exampleCode = `
+return query\`SELECT * FROM users WHERE col1 = \${1}\`;
+`.replace(/\n/, "");
+
+export interface Props {
   database: Uint8Array;
 }
 
 export default function Editor({ database }: Props) {
   const sqlite = useSqlite(database);
-  const [code, setCode] = useState(
-    "return query`SELECT * FROM users WHERE col1 = ${1}`;"
-  );
+  const [code, setCode] = useState(exampleCode);
   const [results, setResults] = useState<QueryExecResult[]>([]);
   useEffect(() => {
     run(sqlite, code).then(
@@ -77,30 +80,42 @@ export default function Editor({ database }: Props) {
     );
   }, [sqlite, code]);
   return (
-    <div>
-      <CodeMirror
-        value={code}
-        height="200px"
-        extensions={[javascript({ jsx: true })]}
-        onChange={setCode}
-        theme={theme}
-      />
-      {results.map((result, index) => (
-        <table key={index}>
-          <tr>
-            {result.columns.map((column, index) => (
-              <th key={index}>{column}</th>
-            ))}
-          </tr>
-          {result.values.map((values, index) => (
-            <tr key={index}>
-              {values.map((value, index) => (
-                <td key={index}>{value}</td>
+    <div className={styles.card}>
+      <h1 className={styles.title}>QueryX</h1>
+      <h2 className={styles.tagline}>
+        A Javascript tool for composing and
+        <br />
+        executing SQL queries
+      </h2>
+      <div className={styles.editor}>
+        <CodeMirror
+          value={code}
+          height="200px"
+          extensions={[javascript({ jsx: true })]}
+          onChange={setCode}
+          theme="dark"
+        />
+      </div>
+      <div className={styles.results}>
+        {results.map((result, index) => (
+          <table key={index}>
+            <tbody>
+              <tr>
+                {result.columns.map((column, index) => (
+                  <th key={index}>{column}</th>
+                ))}
+              </tr>
+              {result.values.map((values, index) => (
+                <tr key={index}>
+                  {values.map((value, index) => (
+                    <td key={index}>{value}</td>
+                  ))}
+                </tr>
               ))}
-            </tr>
-          ))}
-        </table>
-      ))}
+            </tbody>
+          </table>
+        ))}
+      </div>
     </div>
   );
 }

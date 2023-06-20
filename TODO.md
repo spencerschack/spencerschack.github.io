@@ -1,0 +1,4 @@
+- toc
+- style header
+- add further reading section
+- swap out editor? or style it
