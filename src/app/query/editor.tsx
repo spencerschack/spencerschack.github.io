@@ -4,7 +4,8 @@ import { javascript } from "@codemirror/lang-javascript";
 import CodeMirror from "@uiw/react-codemirror";
 import { createTheme } from "@uiw/codemirror-themes";
 import { tags as t } from "@lezer/highlight";
-import sqlite3InitModule from "@sqlite.org/sqlite-wasm";
+import { useEffect, useMemo, useRef, useState } from "react";
+import initSqlite, { Database, QueryExecResult } from "sql.js/dist/sql-asm";
 
 const theme = createTheme({
   theme: "light",
@@ -36,50 +37,70 @@ const theme = createTheme({
   ],
 });
 
-const log = (...args) => console.log(...args);
-const error = (...args) => console.error(...args);
-
-const start = function (sqlite3) {
-  log("Running SQLite3 version", sqlite3.version.libVersion);
-  const db = new sqlite3.oo1.DB("/mydb.sqlite3", "ct");
-  // Your SQLite code here.
-};
-
-log("Loading and initializing SQLite3 module...");
-sqlite3InitModule({
-  print: log,
-  printErr: error,
-}).then((sqlite3) => {
-  try {
-    log("Done initializing. Running demo...");
-    start(sqlite3);
-  } catch (err) {
-    error(err.name, err.message);
+async function run(database: Promise<Database>, code: string) {
+  let results: QueryExecResult[] = [];
+  async function query(parts: string[], ...binds: string[]) {
+    results.push(...(await database).exec(parts.join("?"), binds));
   }
-});
-
-function run(code: string) {
-  const wrapper = `
-    (async () => {
-      function query(parts, ...binds) {
-        return [parts, binds];
-      }
-      ${code}
-    })().then(console.log, console.error);
-  `;
-  window.eval(wrapper);
+  const func = new Function("query", code);
+  func(query);
+  return results;
 }
 
-export default function Editor() {
+function useSqlite(database: Uint8Array) {
+  const instance = useRef<Database>();
+  const promise = useRef(
+    initSqlite().then(
+      (sqlite) => (instance.current = new sqlite.Database(database))
+    )
+  );
+  useEffect(() => () => instance.current?.close(), [database]);
+  return promise.current;
+}
+
+interface Props {
+  database: Uint8Array;
+}
+
+export default function Editor({ database }: Props) {
+  const sqlite = useSqlite(database);
+  const [code, setCode] = useState(
+    "return query`SELECT * FROM users WHERE col1 = ${1}`;"
+  );
+  const [results, setResults] = useState<QueryExecResult[]>([]);
+  useEffect(() => {
+    run(sqlite, code).then(
+      (result) => {
+        setResults(result);
+      },
+      () => {}
+    );
+  }, [sqlite, code]);
   return (
     <div>
       <CodeMirror
-        value="return query`SELECT * FROM users`;"
+        value={code}
         height="200px"
         extensions={[javascript({ jsx: true })]}
-        onChange={run}
+        onChange={setCode}
         theme={theme}
       />
+      {results.map((result, index) => (
+        <table key={index}>
+          <tr>
+            {result.columns.map((column, index) => (
+              <th key={index}>{column}</th>
+            ))}
+          </tr>
+          {result.values.map((values, index) => (
+            <tr key={index}>
+              {values.map((value, index) => (
+                <td key={index}>{value}</td>
+              ))}
+            </tr>
+          ))}
+        </table>
+      ))}
     </div>
   );
 }

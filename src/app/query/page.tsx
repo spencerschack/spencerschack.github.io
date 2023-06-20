@@ -3,13 +3,24 @@ import Code, { Props as CodeProps } from "../code";
 import styles from "./styles.module.css";
 import Editor from "./editor";
 import introduction from "./sections/introduction";
+import sqlite from "sql.js/dist/sql-asm";
 
-export default function Query() {
+async function generateDatabase() {
+  const { Database } = await sqlite();
+  const database = new Database();
+  // Run a query without reading the results
+  database.run("CREATE TABLE users (col1, col2);");
+  // Insert two rows: (1,111) and (2,222)
+  database.run("INSERT INTO users VALUES (?,?), (?,?)", [1, 111, 2, 222]);
+  return database.export();
+}
+
+export default async function Query() {
   return (
     <div className={styles.container}>
       <h1>QueryX</h1>
       <h2>A Javascript tool for composing and executing SQL queries</h2>
-      <Editor />
+      <Editor database={await generateDatabase()} />
       {introduction}
       <p>
         I wanted to create an interface for writing SQL to work like it was part
