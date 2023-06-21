@@ -1,2 +1,2 @@
-npm run build
+git acp build
 git subtree push --prefix out origin deploy
