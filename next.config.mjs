@@ -1,6 +1,3 @@
-import mdx from "@next/mdx";
-import rehypeMdxCodeProps from "rehype-mdx-code-props";
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "export",
@@ -23,9 +20,4 @@ const nextConfig = {
   },
 };
 
-const withMDX = mdx({
-  options: {
-    rehypePlugins: [rehypeMdxCodeProps],
-  },
-});
-export default withMDX(nextConfig);
+export default nextConfig;

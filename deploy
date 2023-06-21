@@ -1,5 +1,2 @@
-rm -rf dist
-broccoli build dist
-git add dist
-git commit -m "built"
-git subtree push --prefix dist origin master
+npm run build
+git subtree push --prefix out origin deploy
