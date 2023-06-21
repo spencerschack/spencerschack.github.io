@@ -6,6 +6,7 @@ const nextConfig = {
   output: "export",
   experimental: {
     typedRoutes: true,
+    esmExternals: "loose",
   },
   webpack(config, { isServer }) {
     if (!isServer) {

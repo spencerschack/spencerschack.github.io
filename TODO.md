@@ -1,4 +1,7 @@
-- toc
-- style header
-- add further reading section
+- export site, test on gh
 - swap out editor? or style it
+- style header
+- seed db
+- examples
+- toc
+- add further reading section
