@@ -1,0 +1,106 @@
+.card {
+  --buffer: 3vw;
+  --width: 100vw - 2 * var(--buffer);
+  position: relative;
+  width: calc(var(--width));
+  height: calc((var(--width)) * 0.5);
+  margin: var(--buffer);
+  overflow: hidden;
+  border-radius: calc(var(--buffer) * 0.5);
+  background: black;
+  box-shadow: 0 0 30px hsla(0 0% 0% / 25%) inset;
+}
+
+.title {
+  position: absolute;
+  right: 60%;
+  bottom: 60%;
+  color: white;
+  font-size: 64px;
+}
+
+.tagline {
+  position: absolute;
+  top: 40%;
+  right: 60%;
+  margin-top: 20px;
+  color: lightgray;
+  font-weight: 400;
+  text-align: right;
+}
+
+.editor {
+  display: flex;
+  position: absolute;
+  bottom: 40%;
+  left: 40%;
+  justify-content: stretch;
+  width: 40em;
+  height: 20em;
+  margin-bottom: 15px;
+  margin-left: 40px;
+}
+
+.loadContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+.loadContainer[data-database] {
+  top: auto;
+  right: 20px;
+  right: 20px;
+  left: auto;
+}
+
+.loadContainer:not([disabled]) {
+  cursor: pointer;
+}
+
+.loadContainer[disabled]:not([data-database]) {
+  cursor: wait;
+}
+
+.loadButton {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  height: 30px;
+  padding: 0 15px;
+  border: 0;
+  border-radius: 100px;
+  background: black;
+  color: white;
+  font-size: 16px;
+  line-height: 30px;
+  font-family: monospace;
+  white-space: nowrap;
+}
+
+.loadContainer[data-database] .loadButton {
+  right: 0;
+}
+
+.loadContainer:not([disabled]) .loadButton {
+  cursor: pointer;
+}
+
+.loadContainer:not([disabled]):hover .loadButton {
+  background: blue;
+}
+
+.results {
+  position: absolute;
+  top: 60%;
+  right: 0;
+  bottom: 0;
+  left: 40%;
+  margin-top: 25px;
+  margin-left: 40px;
+}

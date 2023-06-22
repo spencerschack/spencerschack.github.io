@@ -3,18 +3,13 @@ import { ReactNode } from "react";
 
 export interface Props {
   children: ReactNode;
-  className?: string;
   highlit?: boolean;
 }
 
-export default function Container({
-  className,
-  children,
-  highlit = false,
-}: Props) {
+export default function Container({ children, highlit = false }: Props) {
   return (
     <div
-      className={[styles.container, className, highlit ? styles.highlit : null]
+      className={[styles.container, highlit ? styles.highlit : null]
         .filter(Boolean)
         .join(" ")}
     >

@@ -1,7 +1,8 @@
-const toQuery: unique symbol = Symbol();
+export const toQuery: unique symbol = Symbol();
 
-type Query<V> = [readonly string[], (V | ToQuery<V>)[]];
-type ToQuery<V> = { [toQuery]: () => Query<V> };
+type Query<V> = [readonly string[], V[]];
+type NestedQuery<V> = [readonly string[], (V | ToQuery<V>)[]];
+export type ToQuery<V> = { [toQuery]: () => Query<V> };
 
 async function collectAsyncIterator<T>(
   asyncIterator: AsyncIterable<T>
@@ -17,7 +18,9 @@ type QueryElement<V> =
   | { type: "part"; value: string }
   | { type: "bind"; value: V };
 
-function* unnest<V>(...[parts, binds]: Query<V>): Generator<QueryElement<V>> {
+function* unnest<V>(
+  ...[parts, binds]: NestedQuery<V>
+): Generator<QueryElement<V>> {
   yield { type: "part", value: parts[0] };
   for (let i = 0; i < binds.length; i++) {
     const bind = binds[i];
@@ -30,12 +33,12 @@ function* unnest<V>(...[parts, binds]: Query<V>): Generator<QueryElement<V>> {
   }
 }
 
-function* unnestBinds<V>(...query: Query<V>) {
+function* unnestBinds<V>(...query: NestedQuery<V>) {
   for (const { type, value } of unnest(...query))
     if (type === "bind") yield value;
 }
 
-function* unnestParts<V>(...query: Query<V>) {
+function* unnestParts<V>(...query: NestedQuery<V>) {
   let currentPart = "";
   for (const { type, value } of unnest(...query)) {
     if (type === "bind") {
@@ -68,14 +71,3 @@ export default function makeQuery<V, R>(
     };
   };
 }
-
-const $ = makeQuery(async function* (
-  parts,
-  variables: (string | number | null)[]
-) {
-  yield { id: 1 };
-});
-
-(async () => {
-  const result = await $`something ${$`s`}`;
-})();

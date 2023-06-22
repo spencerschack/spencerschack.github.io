@@ -1,6 +1,6 @@
-import sqlite from "sql.js/dist/sql-asm";
 import styles from "./styles.module.css";
-import Editor from "./editor";
+import Card from "./card";
+import generate from "./database/generate";
 import background from "./sections/background";
 import motivation from "./sections/motivation";
 import experimentation from "./sections/experimentation";
@@ -8,21 +8,36 @@ import implementation from "./sections/implementation";
 import composition from "./sections/composition";
 import asyncIteration from "./sections/asyncIteration";
 import conclusion from "./sections/conclusion";
+import exec from "./database/exec";
 
-async function generateDatabase() {
-  const { Database } = await sqlite();
-  const database = new Database();
-  // Run a query without reading the results
-  database.run("CREATE TABLE users (col1, col2);");
-  // Insert two rows: (1,111) and (2,222)
-  database.run("INSERT INTO users VALUES (?,?), (?,?)", [1, 111, 2, 222]);
-  return database.export();
-}
+const example = `
+const newUsers = query\`
+  SELECT *
+  FROM users
+  WHERE join_date > "2021-02-01"
+\`;
+return query\`
+  SELECT
+    products.name AS product,
+    SUM(orders.quantity * products.price) AS revenue
+  FROM orders
+  INNER JOIN (\${newUsers}) new_users
+    ON orders.user_id = new_users.id
+  INNER JOIN products
+    ON orders.product_id = products.id
+  GROUP BY products.id
+  ORDER BY revenue DESC
+  LIMIT 20
+\`;
+`.replace(/^\n|\n$/, "");
 
 export default async function Query() {
+  const database = await generate();
+  const initialResults = await exec(database, example);
+  if (!initialResults) throw "no results";
   return (
     <>
-      <Editor database={await generateDatabase()} />
+      <Card initialResults={initialResults} initialCode={example} />
       <div className={styles.container}>
         {background}
         {motivation}

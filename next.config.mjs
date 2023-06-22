@@ -14,6 +14,12 @@ const nextConfig = {
     }
 
     config.experiments.asyncWebAssembly = true;
+    // config.output.assetModuleFilename = "static/[hash][ext]";
+    // config.output.publicPath = "/_next/";
+    // config.module.rules.push({
+    //   test: /\.wasm/,
+    //   type: "asset/resource",
+    // });
     config.module.noParse = /node_modules\/sql\.js\/dist\//;
 
     return config;

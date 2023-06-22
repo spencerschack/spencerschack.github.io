@@ -1,7 +1,4 @@
-- export site, test on gh
-- swap out editor? or style it
 - style header
-- seed db
-- examples
+- export site, test on gh
 - toc
 - add further reading section
