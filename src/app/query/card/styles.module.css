@@ -126,8 +126,8 @@
 .error {
   z-index: 100;
   position: absolute;
-  top: 0;
-  left: 25em;
+  top: 30px;
+  left: calc(var(--main-width) / 2);
   transform: translate(-50%, 0);
   color: white;
   background: hsl(var(--complementary-hue) 50% 50%);
