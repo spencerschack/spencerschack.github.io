@@ -1,22 +1,75 @@
+.root {
+  --hue: 210;
+  --complementary-hue: 30;
+  --main-width: 700px;
+  --sidebar-width: 350px;
+  --horizontal-offset: -100px;
+  --buffer: 3vw;
+}
+
 .container {
-  width: 40em;
-  margin: 0 auto 10em auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--buffer);
+}
+
+.content {
+  width: var(--main-width);
   font-size: 18px;
   line-height: 26px;
   letter-spacing: 0.3px;
   text-align: justify;
 }
 
-.container p {
-  margin: 30px 0;
+.toc {
+  position: sticky;
+  top: var(--buffer);
+  width: var(--sidebar-width);
+  margin: 0;
+  margin-left: var(--horizontal-offset);
+  padding: 0;
+  list-style: none;
+  text-align: right;
 }
 
-.container li {
+.toc li {
+  line-height: 25px;
+}
+.toc li:not(:first-child) {
+  counter-increment: section;
+}
+
+.toc li::after {
+  margin-left: 10px;
+  content: counter(section);
+  font-family: monospace;
+  opacity: 0.5;
+}
+
+.toc li:first-child::after {
+  content: "0";
+}
+
+.toc a {
+  color: hsl(var(--hue) 100% 50%);
+  font-weight: 600;
+  text-underline-offset: 2px;
+}
+
+.content p,
+.content h2,
+.p {
+  margin: 0;
+  margin-bottom: 30px;
+}
+
+.content li {
   margin: 30px 0;
   list-style: none;
 }
 
-.container li::before {
+.content li::before {
   margin-left: -10px;
   padding-right: 10px;
   content: "—";

@@ -1,12 +1,17 @@
 import Code from "../../code";
+import styles from "../styles.module.css";
+
+export const title = "Motivation";
 
 export default (
-  <>
-    <h2>Motivation</h2>
+  <section id={encodeURIComponent(title)}>
+    <h2>{title}</h2>
     <p>Query builders can be very useful when writing simple queries:</p>
-    <Code language="javascript">{`
+    <div className={styles.p}>
+      <Code language="javascript">{`
 knex('posts').where('category_id', 42).orderBy('created_at');
 `}</Code>
+    </div>
     <p>However, this approach does have some downsides:</p>
     <ul>
       <li>
@@ -21,5 +26,5 @@ knex('posts').where('category_id', 42).orderBy('created_at');
         builder has a unique API.
       </li>
     </ul>
-  </>
+  </section>
 );

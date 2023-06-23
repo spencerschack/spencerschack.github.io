@@ -1,8 +1,11 @@
 import Code from "../../code";
+import styles from "../styles.module.css";
+
+export const title = "Implementation";
 
 export default (
-  <>
-    <h2>Implementation</h2>
+  <section id={encodeURIComponent(title)}>
+    <h2>{title}</h2>
     <p>
       My first step was creating something like{" "}
       <a href="https://github.com/blakeembrey/sql-template-tag">
@@ -14,13 +17,15 @@ export default (
       </a>
       . This single line function already completed about 80% of the API.
     </p>
-    <Code language="javascript">{`
+    <div className={styles.p}>
+      <Code language="javascript">{`
 function query(parts, ...binds) {
   return connection.execute({ sql: parts.join("$"), binds });
 }
 
 const [result] = await query\`SELECT * FROM users WHERE id = \${id}\`;
 `}</Code>
+    </div>
     <p>
       The first thing I needed to fix was that a query would execute
       immediately, right when it was defined. It would be better if it would run
@@ -28,7 +33,8 @@ const [result] = await query\`SELECT * FROM users WHERE id = \${id}\`;
       &quot;lazy&quot; promises by creating an object with a <code>then</code>{" "}
       method.
     </p>
-    <Code language="javascript" highlight="2-3,6-7">{`
+    <div className={styles.p}>
+      <Code language="javascript" highlight="2-3,6-7">{`
 function query(parts, ...binds) {
   return {
     then(...args) {
@@ -37,11 +43,13 @@ function query(parts, ...binds) {
         .then(...args);
     }
 `}</Code>
+    </div>
     <p>
       I wanted this tool to be database agnostic so I extracted the execution
       logic:
     </p>
-    <Code language="javascript" highlight="1,4,9-11">{`
+    <div className={styles.p}>
+      <Code language="javascript" highlight="1,4,9-11">{`
 const makeQuery = execute => function query(parts, ...binds) {
   return {
     then(...args) {
@@ -54,5 +62,6 @@ const query = makeQuery((parts, binds) =>
   connection.execute({ sql: parts.join("$"), binds }),
 )
 `}</Code>
-  </>
+    </div>
+  </section>
 );

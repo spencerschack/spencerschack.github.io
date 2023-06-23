@@ -6,7 +6,8 @@ import styles from "./styles.module.css";
 import Results from "../results";
 import Editor from "../editor";
 import exec from "../database/exec";
-import classNames from "classnames";
+import ErrorMessage from "./errorMessage";
+import LoadButton from "./loadButton";
 
 async function loadDatabaseClass(signal: AbortSignal) {
   const mod = await import("sql.js/dist/sql-asm");
@@ -59,41 +60,38 @@ export default function Card({ initialResults, initialCode }: Props) {
   const [load, setLoad] = useState(false);
   const database = useDatabase(load);
   const [code, setCode] = useState(initialCode);
-  const [results, setResults] = useState<QueryExecResult>(initialResults);
+  const [lastResults, setLastResults] =
+    useState<QueryExecResult>(initialResults);
+  const [result, setResult] = useState<ReturnType<typeof exec>>({
+    type: "result",
+    value: initialResults,
+  });
   useEffect(() => {
-    if (database) {
-      const results = exec(database, code);
-      if (results) setResults(results);
-    }
+    if (!database) return;
+    const result = exec(database, code);
+    setResult(result);
+    if (result.type === "result") setLastResults(result.value);
   }, [database, code]);
   return (
-    <div className={styles.card}>
-      <h1 className={styles.title}>QueryX</h1>
-      <h2 className={styles.tagline}>
-        A Javascript tool for composing and
-        <br />
-        executing SQL queries
-      </h2>
-      <div className={styles.editor}>
-        <Editor code={code} setCode={setCode} />
-        <button
-          onClick={() => setLoad(true)}
-          disabled={load}
-          className={styles.loadContainer}
-          {...(database && { "data-database": true })}
-        >
-          <div className={styles.loadButton}>
-            {load
-              ? database
-                ? "Demo loaded"
-                : "Loading..."
-              : "Load live demo"}
+    <section id="Demo" className={styles.container}>
+      <div className={styles.card}>
+        <div className={styles.side}>
+          <h1 className={styles.title}>QueryX</h1>
+          <h2 className={styles.tagline}>
+            A Javascript tool for composing and executing SQL queries
+          </h2>
+        </div>
+        <div className={styles.main}>
+          <div className={styles.editor}>
+            <Editor code={code} setCode={setCode} />
+            <LoadButton load={load} database={!!database} setLoad={setLoad} />
           </div>
-        </button>
+          <div className={styles.results}>
+            {result.type !== "result" && <ErrorMessage {...result} />}
+            <Results results={lastResults} />
+          </div>
+        </div>
       </div>
-      <div className={styles.results}>
-        <Results results={results} />
-      </div>
-    </div>
+    </section>
   );
 }

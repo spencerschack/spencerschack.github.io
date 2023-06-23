@@ -10,7 +10,6 @@ export interface Props {
 export default function Results({ results }: Props) {
   return (
     <div className={styles.results}>
-      <div className={styles.shadow} />
       <table>
         <tbody>
           <tr>

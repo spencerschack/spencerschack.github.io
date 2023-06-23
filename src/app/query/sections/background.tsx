@@ -1,8 +1,8 @@
-import Code from "../../code";
+export const title = "Background";
 
 export default (
-  <>
-    <h2>Background</h2>
+  <section id={encodeURIComponent(title)}>
+    <h2>{title}</h2>
     <p>
       Writing SQL queries is often an inevitable part of software development.
       SQL is either written by hand or with the help of query builders. Query
@@ -14,5 +14,5 @@ export default (
       are tools that help to create queries through an API native to the
       programming language you&apos;re executing the queries from.
     </p>
-  </>
+  </section>
 );

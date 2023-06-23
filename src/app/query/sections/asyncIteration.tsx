@@ -1,14 +1,18 @@
 import Code from "../../code";
+import styles from "../styles.module.css";
+
+export const title = "Async Iteration";
 
 export default (
-  <>
-    <h2>Async Iteration</h2>
+  <section id={encodeURIComponent(title)}>
+    <h2>{title}</h2>
     <p>
       One final feature I wanted to add as a performance optimization was async
       iteration. When I was developing this tool, I was loading a lot of data
       from the database during jobs, but only needed one record at a time.
     </p>
-    <Code language="javascript" highlight="1-5,13,15-17">{`
+    <div className={styles.p}>
+      <Code language="javascript" highlight="1-5,13,15-17">{`
 async function collect(iterator) {
   const arr = [];
   for await (const item of iterator) arr.push(item);
@@ -29,15 +33,18 @@ const makeQuery = execute => function query(parts, ...binds) {
   }
 }
 `}</Code>
+    </div>
     <p>
       This also requires a change to the execute function as well, which will
       depend greatly on the database library.
     </p>
-    <Code language="javascript">{`
+    <div className={styles.p}>
+      <Code language="javascript">{`
 const query = makeQuery((parts, binds) => {
   const result = connection.execute({ sql: parts.join("$"), binds });
   return result.streamRows();
 })
-`}</Code>{" "}
-  </>
+`}</Code>
+    </div>
+  </section>
 );

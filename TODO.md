@@ -1,4 +1,3 @@
-- style header
+- responsive
 - export site, test on gh
-- toc
 - add further reading section

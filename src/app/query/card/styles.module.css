@@ -1,44 +1,51 @@
+.container {
+  padding: var(--buffer);
+}
+
 .card {
-  --buffer: 3vw;
-  --width: 100vw - 2 * var(--buffer);
-  position: relative;
-  width: calc(var(--width));
-  height: calc((var(--width)) * 0.5);
-  margin: var(--buffer);
+  padding-top: var(--buffer);
+  display: flex;
+  justify-content: center;
+  gap: var(--buffer);
   overflow: hidden;
   border-radius: calc(var(--buffer) * 0.5);
-  background: black;
-  box-shadow: 0 0 30px hsla(0 0% 0% / 25%) inset;
+  background: linear-gradient(
+    to bottom right,
+    hsl(var(--hue) 100% 30%),
+    hsl(var(--hue) 100% 80%)
+  );
 }
 
-.title {
-  position: absolute;
-  right: 60%;
-  bottom: 60%;
-  color: white;
-  font-size: 64px;
-}
-
-.tagline {
-  position: absolute;
-  top: 40%;
-  right: 60%;
-  margin-top: 20px;
-  color: lightgray;
-  font-weight: 400;
+.side {
+  width: var(--sidebar-width);
+  margin-left: var(--horizontal-offset);
   text-align: right;
 }
 
+.main {
+  width: var(--main-width);
+}
+
+.title {
+  margin-top: 20%;
+  color: white;
+  font-size: 64px;
+  text-decoration: underline;
+  text-decoration-color: hsl(0 0% 100% / 50%);
+  text-underline-offset: 5px;
+}
+
+.tagline {
+  margin-top: calc(var(--buffer) / 2);
+  color: hsl(0 0% 100% / 75%);
+  font-weight: 400;
+}
+
 .editor {
+  position: relative;
   display: flex;
-  position: absolute;
-  bottom: 40%;
-  left: 40%;
   justify-content: stretch;
-  width: 40em;
   height: 20em;
-  margin-bottom: 15px;
-  margin-left: 40px;
 }
 
 .loadContainer {
@@ -83,6 +90,10 @@
   white-space: nowrap;
 }
 
+.loadButtonIcon {
+  font-weight: bold;
+}
+
 .loadContainer[data-database] .loadButton {
   right: 0;
 }
@@ -92,15 +103,40 @@
 }
 
 .loadContainer:not([disabled]):hover .loadButton {
-  background: blue;
+  background: hsl(var(--hue) 100% 50%);
 }
 
 .results {
+  width: 2000px;
+  margin-top: calc(var(--buffer) / 2);
+  position: relative;
+  max-height: 300px;
+  overflow: hidden;
+}
+
+.errorContainer {
   position: absolute;
-  top: 60%;
-  right: 0;
-  bottom: 0;
-  left: 40%;
-  margin-top: 25px;
-  margin-left: 40px;
+  top: -10px;
+  right: -10px;
+  bottom: -10px;
+  left: -10px;
+  backdrop-filter: blur(2px);
+}
+
+.error {
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  left: 25em;
+  transform: translate(-50%, 0);
+  color: white;
+  background: hsl(var(--complementary-hue) 50% 50%);
+  font-family: monospace;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 30px hsl(var(--hue) 75% 50%);
+}
+
+.errorTitle {
+  font-weight: 600;
 }
