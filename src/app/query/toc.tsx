@@ -3,12 +3,13 @@
 import minBy from "lodash/minBy";
 import { useEffect, useState } from "react";
 import styles from "./styles.module.css";
-import sections from "./sections";
 
-const items = [{ title: "Demo" }, ...sections];
+interface Props {
+  titles: string[];
+}
 
-export default function TOC() {
-  const [intersect, setIntersect] = useState<string>(items[0].title);
+export default function TOC({ titles }: Props) {
+  const [intersect, setIntersect] = useState<string>(titles[0]);
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -21,24 +22,22 @@ export default function TOC() {
         rootMargin: "0 0 -90% 0",
       }
     );
-    for (const { title } of items) {
+    for (const title of titles) {
       const element = document.getElementById(encodeURIComponent(title));
       if (!element) continue;
       observer.observe(element);
     }
     return () => observer.disconnect();
-  }, []);
-  return items.map((item) => (
-    <li key={item.title}>
+  }, [titles]);
+  return titles.map((title) => (
+    <li key={title}>
       <a
-        href={"#" + encodeURIComponent(item.title)}
+        href={"#" + encodeURIComponent(title)}
         className={
-          intersect === encodeURIComponent(item.title)
-            ? styles.intersect
-            : undefined
+          intersect === encodeURIComponent(title) ? styles.intersect : undefined
         }
       >
-        {item.title}
+        {title}
       </a>
     </li>
   ));

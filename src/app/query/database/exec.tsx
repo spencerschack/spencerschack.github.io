@@ -7,13 +7,14 @@ type Executor = (q: typeof query) => ToQuery<string | number>;
 
 export default function exec(database: Database, code: string) {
   try {
-    const func = new Function("query", code) as Executor;
+    const func = new Function("q", code) as Executor;
     const result = func(query);
     if (result && typeof result === "object" && toQuery in result) {
       const [parts, binds] = result[toQuery]();
       try {
         const result = database.exec(parts.join("?"), binds)[0];
-        if (!result) return { type: "sql_error", value: new Error("No results") } as const;
+        if (!result)
+          return { type: "sql_error", value: new Error("No results") } as const;
         return { type: "result", value: result } as const;
       } catch (error) {
         return { type: "sql_error", value: error } as const;

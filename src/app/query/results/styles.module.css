@@ -3,7 +3,6 @@
 }
 
 .results table {
-  min-width: var(--main-width);
   border-radius: 5px;
   border-collapse: collapse;
   color: white;
@@ -11,6 +10,18 @@
   line-height: 30px;
   font-family: monospace;
   white-space: nowrap;
+}
+
+@media (min-width: 1025px) {
+  .results table {
+    min-width: var(--main-width);
+  }
+}
+
+@media (max-width: 1024px) {
+  .results table {
+    min-width: 100%;
+  }
 }
 
 .results th {

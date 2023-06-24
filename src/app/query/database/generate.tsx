@@ -8,19 +8,19 @@ export default async function generate() {
   database.run(
     `
     CREATE TABLE users (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      user_id INTEGER PRIMARY KEY AUTOINCREMENT,
       first_name,
       last_name,
       email,
       join_date
     );
     CREATE TABLE products (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      product_id INTEGER PRIMARY KEY AUTOINCREMENT,
       name,
       price
     );
     CREATE TABLE orders (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      order_id INTEGER PRIMARY KEY AUTOINCREMENT,
       user_id,
       product_id,
       quantity,

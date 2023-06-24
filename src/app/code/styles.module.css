@@ -1,8 +1,9 @@
 .container {
   --side-padding: 10px;
+  box-sizing: border-box;
   width: 100%;
   padding: 10px var(--side-padding);
-  overflow: hidden;
+  overflow: scroll hidden;
   border-radius: 5px;
   background: hsl(var(--hue) 100% 97%);
   font-size: 16px;

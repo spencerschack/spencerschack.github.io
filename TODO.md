@@ -1,3 +1,2 @@
-- responsive
-- export site, test on gh
 - add further reading section
+- 80/20

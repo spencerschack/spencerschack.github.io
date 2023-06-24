@@ -6,21 +6,23 @@ import exec from "./database/exec";
 import TOC from "./toc";
 
 const example = `
-const newUsers = query\`
-  SELECT *
-  FROM users
-  WHERE join_date > "2021-02-01"
+const orders = interval => q\`
+  SELECT name, SUM(quantity * price) AS revenue, COUNT(*) AS SALES
+  FROM products JOIN orders USING (product_id)
+  GROUP BY name, STRFTIME(\${interval}, date)
 \`;
-return query\`
-  SELECT *
-  FROM orders
-  INNER JOIN (\${newUsers}) new_users
-    ON orders.user_id = new_users.id
-  INNER JOIN products
-    ON orders.product_id = products.id
-  LIMIT 20
+const stats = column => q\`
+  ROUND(AVG(\${column})) AS avg_\${column},
+  MAX(\${column}) AS max_\${column}
+\`;
+return q\`
+  SELECT name, \${stats(q\`revenue\`)}, \${stats(q\`sales\`)}
+  FROM (\${orders('%Y')})
+  GROUP BY name
 \`;
 `.replace(/^\n|\n$/g, "");
+
+const titles = ["Demo", ...sections.map((section) => section.title)];
 
 export default async function Query() {
   const database = await generate();
@@ -36,7 +38,7 @@ export default async function Query() {
       <Card initialResults={initialResults.value} initialCode={example} />
       <div className={styles.container}>
         <ol className={styles.toc}>
-          <TOC />
+          <TOC titles={titles} />
         </ol>
         <div className={styles.content}>
           {sections.map((section) => section.default)}
