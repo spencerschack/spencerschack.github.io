@@ -1,3 +1,5 @@
 npm run build
+touch build/.nojekyll
+echo "spencerschack.com" > build/CNAME
 git acp build
 git subtree push --prefix out origin deploy
