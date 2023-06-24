@@ -7,19 +7,28 @@
   --buffer: 3vw;
 }
 
+@media (min-width: 1025px) {
 .container {
   display: flex;
   align-items: flex-start;
   justify-content: center;
   gap: var(--buffer);
 }
+}
 
 .content {
-  width: var(--main-width);
+  max-width: var(--main-width);
   font-size: 18px;
   line-height: 26px;
   letter-spacing: 0.3px;
   text-align: justify;
+}
+
+@media (max-width: 1024px) {
+  .content {
+    margin: 0 auto;
+    padding: 0 var(--buffer);
+  }
 }
 
 .toc {
@@ -31,6 +40,12 @@
   padding: 0;
   list-style: none;
   text-align: right;
+}
+
+@media (max-width: 1024px) {
+  .toc {
+    display: none;
+  }
 }
 
 .toc li {
@@ -52,9 +67,13 @@
 }
 
 .toc a {
-  color: hsl(var(--hue) 100% 50%);
+  color: hsl(var(--complementary-hue) 100% 50%);
   font-weight: 600;
   text-underline-offset: 2px;
+}
+
+.toc .intersect {
+  color: hsl(var(--hue) 100% 50%);
 }
 
 .content p,

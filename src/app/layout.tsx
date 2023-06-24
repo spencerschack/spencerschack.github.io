@@ -1,7 +1,7 @@
 import "./globals.css";
-import { PT_Serif } from "next/font/google";
+import { Roboto_Slab } from "next/font/google";
 
-const font = PT_Serif({ subsets: ["latin"], weight: ["400", "700"] });
+const font = Roboto_Slab({ subsets: ["latin"], weight: ["400", "700"] });
 
 export const metadata = {
   title: "spencerschack.com",
