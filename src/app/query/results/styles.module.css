@@ -1,5 +1,8 @@
 .results {
+  max-height: 250px;
+  overflow: hidden;
   border-collapse: collapse;
+  mask-image: linear-gradient(to bottom, black 50%, hsl(0 0% 0% / 20%));
 }
 
 .results table {

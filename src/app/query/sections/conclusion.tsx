@@ -12,6 +12,19 @@ export default (
     <h3>Further Reading:</h3>
     <ul>
       <li>
+        <a href="https://github.com/spencerschack/spencerschack.github.io/blob/next/src/app/query/query.ts">
+          query.ts
+        </a>
+        : The full, Typescript version of this tool.
+      </li>
+      <li>
+        <a href="https://martinfowler.com/bliki/MinimalInterface.html">
+          MinimalInterface
+        </a>
+        : What is a &ldquo;minimal interface&rdquo; and why it might be better
+        than a &ldquo;humane interface&rdquo;.
+      </li>
+      <li>
         <a href="https://github.com/blakeembrey/sql-template-tag">
           sql-template-tag
         </a>

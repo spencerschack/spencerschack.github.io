@@ -4,6 +4,8 @@ h2 {
   margin: 0;
 }
 
-.cm-focused {
-  outline: none !important;
+@media (prefers-color-scheme: dark) {
+  :root {
+    filter: invert() hue-rotate(180deg);
+  }
 }

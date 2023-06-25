@@ -32,8 +32,8 @@
   padding: 0 15px;
   border: 0;
   border-radius: 100px;
-  background: black;
-  color: white;
+  background: white;
+  color: black;
   font-size: 16px;
   line-height: 30px;
   font-family: var(--monospace);
@@ -54,4 +54,5 @@
 
 .loadContainer:not([disabled]):hover .loadButton {
   background: hsl(var(--hue) 100% 50%);
+  color: white;
 }

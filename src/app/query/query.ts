@@ -8,65 +8,45 @@ async function collectAsyncIterator<T>(
   asyncIterator: AsyncIterable<T>
 ): Promise<T[]> {
   const result = [];
-  for await (const row of asyncIterator) {
-    result.push(row);
-  }
+  for await (const row of asyncIterator) result.push(row);
   return result;
 }
 
-type QueryElement<V> =
-  | { type: "part"; value: string }
-  | { type: "bind"; value: V };
-
-function* unnest<V>(
-  ...[parts, binds]: NestedQuery<V>
-): Generator<QueryElement<V>> {
-  yield { type: "part", value: parts[0] };
-  for (let i = 0; i < binds.length; i++) {
-    const bind = binds[i];
+function unnest<V>(
+  ...[[firstPart, ...nestedParts], nestedBinds]: NestedQuery<V>
+): Query<V> {
+  const parts = [firstPart];
+  const binds: V[] = [];
+  nestedBinds.forEach((bind, index) => {
     if (bind && typeof bind === "object" && toQuery in bind) {
-      yield* unnest(...bind[toQuery]());
+      const [bindParts, bindBinds] = bind[toQuery]();
+      parts[parts.length - 1] += bindParts[0];
+      parts.push(...bindParts.slice(1));
+      parts[parts.length - 1] += nestedParts[index];
+      binds.push(...bindBinds);
     } else {
-      yield { type: "bind", value: bind };
+      parts.push(nestedParts[index]);
+      binds.push(bind);
     }
-    yield { type: "part", value: parts[i + 1] };
-  }
-}
-
-function* unnestBinds<V>(...query: NestedQuery<V>) {
-  for (const { type, value } of unnest(...query))
-    if (type === "bind") yield value;
-}
-
-function* unnestParts<V>(...query: NestedQuery<V>) {
-  let currentPart = "";
-  for (const { type, value } of unnest(...query)) {
-    if (type === "bind") {
-      yield currentPart;
-      currentPart = "";
-    } else {
-      currentPart += value;
-    }
-  }
-  yield currentPart;
+  });
+  return [parts, binds];
 }
 
 export default function makeQuery<V, R>(
-  execute: (queryParts: string[], variables: V[]) => AsyncIterator<R>
+  execute: (queryParts: readonly string[], variables: V[]) => AsyncIterator<R>
 ) {
   return (
     nestedParts: readonly string[],
     ...nestedBinds: (V | ToQuery<V>)[]
   ): AsyncIterable<R> & PromiseLike<R[]> & ToQuery<V> => {
-    const parts = Array.from(unnestParts(nestedParts, nestedBinds));
-    const binds = Array.from(unnestBinds(nestedParts, nestedBinds));
+    const unnestedQuery = unnest(nestedParts, nestedBinds);
     return {
-      [toQuery]: () => [parts, binds],
+      [toQuery]: () => unnestedQuery,
       then(resolve, reject) {
         return collectAsyncIterator(this).then(resolve, reject);
       },
       [Symbol.asyncIterator]() {
-        return execute(parts, binds);
+        return execute(...unnestedQuery);
       },
     };
   };

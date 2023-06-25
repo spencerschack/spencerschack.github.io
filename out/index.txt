@@ -1,12 +1,12 @@
 1:HL["/_next/static/media/035951aefad7b653-s.p.woff2",{"as":"font","type":"font/woff2"}]
 2:HL["/_next/static/media/3478b6abef19b3b3-s.p.woff2",{"as":"font","type":"font/woff2"}]
 3:HL["/_next/static/media/d50fa1c781f60195-s.p.woff2",{"as":"font","type":"font/woff2"}]
-4:HL["/_next/static/css/9bca2dc764b00ac6.css",{"as":"style"}]
-0:[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],"$L5",[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/9bca2dc764b00ac6.css","precedence":"next"}]],["$L6",["$","meta",null,{"name":"next-size-adjust"}]]]]]
+4:HL["/_next/static/css/8dc07470c12386b5.css",{"as":"style"}]
+0:[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],"$L5",[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/8dc07470c12386b5.css","precedence":"next"}]],["$L6",["$","meta",null,{"name":"next-size-adjust"}]]]]]
 7:HL["/_next/static/media/1060bab20f18b5c2-s.p.woff2",{"as":"font","type":"font/woff2"}]
 8:HL["/_next/static/css/69b934242da4646e.css",{"as":"style"}]
-9:I{"id":"4463","chunks":["272:static/chunks/webpack-0ff35f58da6e8ec0.js","667:static/chunks/2443530c-824e93370d7398c3.js","488:static/chunks/488-e1ddd61bb847c097.js"],"name":"","async":false}
-a:I{"id":"1010","chunks":["272:static/chunks/webpack-0ff35f58da6e8ec0.js","667:static/chunks/2443530c-824e93370d7398c3.js","488:static/chunks/488-e1ddd61bb847c097.js"],"name":"","async":false}
+9:I{"id":"4463","chunks":["272:static/chunks/webpack-b4a7d43db020ffb5.js","667:static/chunks/2443530c-824e93370d7398c3.js","488:static/chunks/488-e1ddd61bb847c097.js"],"name":"","async":false}
+a:I{"id":"1010","chunks":["272:static/chunks/webpack-b4a7d43db020ffb5.js","667:static/chunks/2443530c-824e93370d7398c3.js","488:static/chunks/488-e1ddd61bb847c097.js"],"name":"","async":false}
 b:I{"id":"2818","chunks":["931:static/chunks/app/page-349f75e1c7c5956d.js"],"name":"","async":false}
 c:I{"id":"8707","chunks":["931:static/chunks/app/page-349f75e1c7c5956d.js"],"name":"","async":false}
 5:[["$","html",null,{"lang":"en","children":["$","body",null,{"className":"__variable_f30994 __className_8fb110","children":["$","$L9",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","loading":"$undefined","loadingStyles":"$undefined","hasLoading":false,"template":["$","$La",null,{}],"templateStyles":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined","childProp":{"current":[[["$","$Lb",null,{}],["$","div",null,{"className":"page_container__HHToX","children":["$","div",null,{"className":"page_card__ftWzl __className_656221","children":[["$","h2",null,{"className":"page_title__yhPp_","children":"Zenvas"}],["$","$Lc",null,{"src":"/images/zenvas.png","width":320,"height":180,"alt":"A screenshot of the zenvas project","unoptimized":true}]]}]}]],null],"segment":"__PAGE__"},"styles":[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/69b934242da4646e.css","precedence":"next"}]]}]}]}],null]

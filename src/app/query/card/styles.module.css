@@ -97,10 +97,7 @@
 
 .results {
   position: relative;
-  max-height: 250px;
   margin-top: calc(var(--buffer) / 2);
-  overflow: hidden;
-  mask-image: linear-gradient(to bottom, black 50%, hsl(0 0% 0% / 20%));
 }
 
 @media (min-width: 1025px) {

@@ -46,7 +46,7 @@ function query(parts, ...binds) {
     </div>
     <p>
       I wanted this tool to be database agnostic so I extracted the execution
-      logic:
+      logic and renamed the helper to <code>$</code> to be more succinct:
     </p>
     <div className={styles.p}>
       <Code language="javascript" highlight="1,4,9-11">{`
@@ -58,7 +58,7 @@ const makeQuery = execute => function query(parts, ...binds) {
   }
 }
 
-const query = makeQuery((parts, binds) =>
+const $ = makeQuery((parts, binds) =>
   connection.execute({ sql: parts.join("$"), binds }),
 )
 `}</Code>

@@ -51,16 +51,16 @@ const makeQuery = execute => function query(parts, ...binds) {
       <Code language="javascript" highlight="3-19,22">{`
 const toQuery = new Symbol();
 
-function compile([firstPart, ...nestedParts], nestedBinds) {
+function unnest([firstPart, ...nestedParts], nestedBinds) {
   const parts = [firstPart];
   const binds = [];
   nestedBinds.forEach((bind, index) => {
     if (bind && typeof bind === "object" && toQuery in bind) {
-      const [nestedParts, nestedBinds] = bind[toQuery]();
-      parts[parts.length - 1] += nestedParts[0];
-      parts.push(...nestedParts.slice(1));
+      const [bindParts, bindBinds] = bind[toQuery]();
+      parts[parts.length - 1] += bindParts[0];
+      parts.push(...bindParts.slice(1));
       parts[parts.length - 1] += nestedParts[index];
-      binds.push(...nestedBinds);
+      binds.push(...bindBinds);
     } else {
       parts.push(nestedParts[index]);
       binds.push(bind);
@@ -70,7 +70,7 @@ function compile([firstPart, ...nestedParts], nestedBinds) {
 }
 
 const makeQuery = execute => function query(inParts, ...inBinds) {
-  const [parts, binds] = compile(inParts, inBinds);
+  const [parts, binds] = unnest(inParts, inBinds);
   return {
 `}</Code>
     </div>

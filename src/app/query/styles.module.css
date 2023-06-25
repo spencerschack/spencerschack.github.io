@@ -6,10 +6,15 @@
   --horizontal-offset: -100px;
   --buffer: 3vw;
   --stroke: 4px;
+  margin-bottom: calc(var(--buffer) * 3);
 }
 
 .root a {
   color: hsl(var(--hue) 100% 50%);
+}
+
+.root code {
+  font-family: var(--monospace);
 }
 
 @media (min-width: 1025px) {
@@ -43,6 +48,7 @@
   margin: 0;
   margin-left: var(--horizontal-offset);
   padding: 0;
+  font-size: 18px;
   list-style: none;
   text-align: right;
 }
@@ -54,7 +60,7 @@
 }
 
 .toc li {
-  line-height: 25px;
+  line-height: 32px;
 }
 .toc li:not(:first-child) {
   counter-increment: section;

@@ -7,7 +7,7 @@ import TOC from "./toc";
 
 const example = `
 const orders = interval => $\`
-  SELECT name, SUM(quantity * price) AS revenue, COUNT(*) AS SALES
+  SELECT name, SUM(quantity * price) AS revenue, COUNT(*) AS sales
   FROM products JOIN orders USING (product_id)
   GROUP BY name, STRFTIME(\${interval}, date)
 \`;

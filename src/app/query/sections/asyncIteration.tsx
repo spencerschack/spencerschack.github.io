@@ -14,9 +14,9 @@ export default (
     <div className={styles.p}>
       <Code language="javascript" highlight="1-5,13,15-17">{`
 async function collect(iterator) {
-  const arr = [];
-  for await (const item of iterator) arr.push(item);
-  return arr;
+  const result = [];
+  for await (const item of iterator) result.push(item);
+  return result;
 }
 
 const makeQuery = execute => function query(parts, ...binds) {
@@ -39,8 +39,8 @@ const makeQuery = execute => function query(parts, ...binds) {
       depend greatly on the database library.
     </p>
     <div className={styles.p}>
-      <Code language="javascript">{`
-const query = makeQuery((parts, binds) => {
+      <Code language="javascript" highlight="3">{`
+const $ = makeQuery((parts, binds) => {
   const result = connection.execute({ sql: parts.join("$"), binds });
   return result.streamRows();
 })
