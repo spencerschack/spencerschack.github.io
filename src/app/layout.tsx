@@ -1,7 +1,17 @@
+import classNames from "classnames";
 import "./globals.css";
-import { Roboto_Slab } from "next/font/google";
+import { Roboto_Slab, IBM_Plex_Mono } from "next/font/google";
 
-const font = Roboto_Slab({ subsets: ["latin"], weight: ["400", "700"] });
+const monospace = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--monospace",
+});
+const body = Roboto_Slab({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font",
+});
 
 export const metadata = {
   title: "spencerschack.com",
@@ -14,7 +24,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={font.className}>{children}</body>
+      <body className={classNames(monospace.variable, body.className)}>
+        {children}
+      </body>
     </html>
   );
 }

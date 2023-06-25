@@ -3,8 +3,8 @@
   width: var(--width);
   margin: 0 auto;
   padding-bottom: calc(570 / 1060 * var(--width));
+  transform: scaleX(var(--scale-x));
   background-image: url("/images/glasses.jpg");
   background-size: cover;
   background-position-y: calc(var(--background-position) * 100%);
-  transform: scaleX(var(--scale-x));
 }

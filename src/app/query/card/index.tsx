@@ -76,9 +76,15 @@ export default function Card({ initialResults, initialCode }: Props) {
     <section id="Demo" className={styles.container}>
       <div className={styles.card}>
         <div className={styles.side}>
-          <h1 className={styles.title}>QueryX</h1>
+          <time className={styles.date}>June 2023</time>
+          <h1 className={styles.title}>
+            SQL Interfaces &amp;
+            <br />
+            The 80/20 Rule
+          </h1>
           <h2 className={styles.tagline}>
-            A Javascript tool for composing and executing SQL queries
+            Developing a minimal interface for composing and executing SQL
+            queries
           </h2>
         </div>
         <div className={styles.main}>

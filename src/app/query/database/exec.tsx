@@ -7,7 +7,7 @@ type Executor = (q: typeof query) => ToQuery<string | number>;
 
 export default function exec(database: Database, code: string) {
   try {
-    const func = new Function("q", code) as Executor;
+    const func = new Function("$", code) as Executor;
     const result = func(query);
     if (result && typeof result === "object" && toQuery in result) {
       const [parts, binds] = result[toQuery]();

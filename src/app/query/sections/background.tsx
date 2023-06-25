@@ -2,7 +2,13 @@ export const title = "Background";
 
 export default (
   <section id={encodeURIComponent(title)}>
-    <h2>{title}</h2>
+    <p>
+      A better API is sometimes the one with fewer features. Often the
+      development effort of software is dominated by the long tail of features.
+      You can get 80% of the features for 20% of the work...if you can do
+      without every last feature.
+    </p>
+    {/* <h2>{title}</h2> */}
     <p>
       Writing SQL queries is often an inevitable part of software development.
       SQL is either written by hand or with the help of query builders. Query

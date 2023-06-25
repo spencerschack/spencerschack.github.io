@@ -5,10 +5,10 @@
 .results table {
   border-radius: 5px;
   border-collapse: collapse;
-  color: white;
+  color: hsl(0 0% 35%);
   font-size: 16px;
   line-height: 30px;
-  font-family: monospace;
+  font-family: var(--monospace);
   white-space: nowrap;
 }
 
@@ -34,12 +34,12 @@
 }
 
 .results tr:nth-child(even) td {
-  background: hsl(0 0% 100% / 15%);
+  background: hsl(0 0% 90%);
 }
 
 .results th {
   padding-top: 5px;
-  border-bottom: 4px solid hsl(0 0% 100% / 35%);
+  border-bottom: var(--stroke) solid hsl(0 0% 80%);
 }
 
 .results th:first-child,

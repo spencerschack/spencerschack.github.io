@@ -1,2 +1,2 @@
-- add further reading section
-- 80/20
+- flesh out 80/20 thoughts
+- jsx and jquery

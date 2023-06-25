@@ -1,0 +1,57 @@
+.loadContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+.loadContainer[data-database] {
+  top: auto;
+  right: 20px;
+  right: 20px;
+  left: auto;
+}
+
+.loadContainer:not([disabled]) {
+  cursor: pointer;
+}
+
+.loadContainer[disabled]:not([data-database]) {
+  cursor: wait;
+}
+
+.loadButton {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  height: 30px;
+  padding: 0 15px;
+  border: 0;
+  border-radius: 100px;
+  background: black;
+  color: white;
+  font-size: 16px;
+  line-height: 30px;
+  font-family: var(--monospace);
+  white-space: nowrap;
+}
+
+.loadButtonIcon {
+  font-weight: bold;
+}
+
+.loadContainer[data-database] .loadButton {
+  right: 0;
+}
+
+.loadContainer:not([disabled]) .loadButton {
+  cursor: pointer;
+}
+
+.loadContainer:not([disabled]):hover .loadButton {
+  background: hsl(var(--hue) 100% 50%);
+}

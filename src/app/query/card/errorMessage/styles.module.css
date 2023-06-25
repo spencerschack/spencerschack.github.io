@@ -1,0 +1,24 @@
+.errorContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: hsl(0 0% 95% / 50%);
+}
+
+.error {
+  position: absolute;
+  top: 35px;
+  left: calc(var(--main-width) / 2);
+  max-width: 400px;
+  padding: 20px;
+  transform: translate(-50%, 0);
+  background: hsl(0 0% 50%);
+  color: white;
+  font-family: var(--monospace);
+}
+
+.errorTitle {
+  font-weight: 600;
+}

@@ -3,17 +3,13 @@
 }
 
 .card {
-  padding-top: var(--buffer);
   display: flex;
   justify-content: center;
-  gap: var(--buffer);
+  padding-top: var(--buffer);
   overflow: hidden;
-  border-radius: calc(var(--buffer) * 0.5);
-  background: linear-gradient(
-    to bottom right,
-    hsl(var(--hue) 100% 30%),
-    hsl(var(--hue) 100% 80%)
-  );
+  gap: var(--buffer);
+  border-radius: calc(var(--buffer) / 3);
+  background: hsl(0 0% 95%);
 }
 
 @media (max-width: 1350px) {
@@ -24,174 +20,91 @@
   }
 }
 
-@media (min-width: 1351px) {
 .side {
-  width: var(--sidebar-width);
-  margin-left: var(--horizontal-offset);
-  text-align: right;
+  display: flex;
+  gap: 20px;
 }
+
+@media (min-width: 1351px) {
+  .side {
+    flex-direction: column;
+    width: var(--sidebar-width);
+    margin-top: calc(var(--buffer));
+    margin-left: var(--horizontal-offset);
+    text-align: right;
+  }
 }
 
 @media (max-width: 1350px) {
- .side {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--buffer);
- }
-}
-
-@media (max-width: 1024px) {
   .side {
-   flex-direction: column;
-   text-align: center;
-  }
- }
-
-@media (min-width: 1025px) {
-  .main {
-    width: var(--main-width);
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 }
 
-@media (max-width: 1024px) {
+.main {
+  max-width: var(--main-width);
+}
+
+@media (max-width: 1350px) {
   .main {
     width: 100%;
-  }
-}
-
-@media (max-width: 1350px) {
-  .main {
     margin: 0 auto;
   }
 }
 
-.title {
-  color: white;
-  font-size: 64px;
-  text-decoration: underline;
-  text-decoration-color: hsl(0 0% 100% / 50%);
-  text-underline-offset: 5px;
+@media (max-width: 1350px) {
+  .main {
+    margin-top: var(--buffer);
+  }
 }
 
-@media (min-width: 1351px) {
+.date {
+  color: hsl(0 0% 50%);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.title {
+  margin-left: -25px;
+  padding-bottom: calc(var(--buffer) / 2);
+  padding-left: 25px;
+  border-bottom: var(--stroke) solid hsl(var(--hue) 100% 75%);
+  font-size: 38px;
+  line-height: 46px;
+}
+
+@media (max-width: 1350px) {
   .title {
-    margin-top: 20%;
+    margin-right: -25px;
+    padding-right: 25px;
   }
 }
 
 .tagline {
-  color: hsl(0 0% 100% / 75%);
   font-weight: 400;
 }
 
-@media (min-width: 1351px) {
-  .tagline {
-    margin-top: calc(var(--buffer) / 2);
-  }
-}
-
 .editor {
-  position: relative;
   display: flex;
+  position: relative;
   justify-content: stretch;
-  height: 20em;
-}
-
-.loadContainer {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 0;
-  border: none;
-  background: none;
-}
-
-.loadContainer[data-database] {
-  top: auto;
-  right: 20px;
-  right: 20px;
-  left: auto;
-}
-
-.loadContainer:not([disabled]) {
-  cursor: pointer;
-}
-
-.loadContainer[disabled]:not([data-database]) {
-  cursor: wait;
-}
-
-.loadButton {
-  position: absolute;
-  right: 20px;
-  bottom: 20px;
-  height: 30px;
-  padding: 0 15px;
-  border: 0;
-  border-radius: 100px;
-  background: black;
-  color: white;
-  font-size: 16px;
-  line-height: 30px;
-  font-family: monospace;
-  white-space: nowrap;
-}
-
-.loadButtonIcon {
-  font-weight: bold;
-}
-
-.loadContainer[data-database] .loadButton {
-  right: 0;
-}
-
-.loadContainer:not([disabled]) .loadButton {
-  cursor: pointer;
-}
-
-.loadContainer:not([disabled]):hover .loadButton {
-  background: hsl(var(--hue) 100% 50%);
+  min-height: 20em;
 }
 
 .results {
-  margin-top: calc(var(--buffer) / 2);
   position: relative;
-  max-height: 300px;
+  max-height: 250px;
+  margin-top: calc(var(--buffer) / 2);
   overflow: hidden;
+  mask-image: linear-gradient(to bottom, black 50%, hsl(0 0% 0% / 20%));
 }
 
 @media (min-width: 1025px) {
   .results {
     width: 2000px;
   }
-}
-
-.errorContainer {
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  bottom: -10px;
-  left: -10px;
-  backdrop-filter: blur(2px);
-}
-
-.error {
-  z-index: 100;
-  position: absolute;
-  top: 30px;
-  left: calc(var(--main-width) / 2);
-  transform: translate(-50%, 0);
-  color: white;
-  background: hsl(var(--complementary-hue) 50% 50%);
-  font-family: monospace;
-  padding: 10px 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 30px hsl(var(--hue) 75% 50%);
-}
-
-.errorTitle {
-  font-weight: 600;
 }

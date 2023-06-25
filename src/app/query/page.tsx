@@ -6,17 +6,17 @@ import exec from "./database/exec";
 import TOC from "./toc";
 
 const example = `
-const orders = interval => q\`
+const orders = interval => $\`
   SELECT name, SUM(quantity * price) AS revenue, COUNT(*) AS SALES
   FROM products JOIN orders USING (product_id)
   GROUP BY name, STRFTIME(\${interval}, date)
 \`;
-const stats = column => q\`
+const stats = column => $\`
   ROUND(AVG(\${column})) AS avg_\${column},
   MAX(\${column}) AS max_\${column}
 \`;
-return q\`
-  SELECT name, \${stats(q\`revenue\`)}, \${stats(q\`sales\`)}
+return $\`
+  SELECT name, \${stats($\`revenue\`)}, \${stats($\`sales\`)}
   FROM (\${orders('%Y')})
   GROUP BY name
 \`;
